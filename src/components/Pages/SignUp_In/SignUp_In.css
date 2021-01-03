@@ -1,0 +1,230 @@
+/* Altaf I will try to replace or enhance this stylying If I can (XD)*/
+
+/* Reset styles */
+:root {
+    --dark-color: #002433;
+    --light-color:#14FF85;
+  }
+  
+* { 
+    box-sizing: border-box; 
+    font-family: 'Open Sans', sans-serif; 
+  
+    color:inherit;
+    background-color:inherit;
+    /* border:2px solid orange; */
+ }
+
+ body {
+    background-color:#ffffff;
+
+  }
+  /* .container {
+      width: 100%;
+      padding-top: 60px;
+      padding-bottom: 100px;
+  } */
+
+ 
+  .login-register-wrapper {
+      max-width: 35%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      /* padding-top: 50px; */
+      padding:0 2em;
+      border-radius: 25px;
+      box-shadow:  0 0 10px var(--light-color);
+      -moz-box-shadow: 0 0 10px  var(--light-color);
+      -webkit-box-shadow: 0 0 10px  var(--light-color);
+      -o-box-shadow: 0 0 10px  var(--light-color);   
+         overflow: hidden; 
+      color:#ffffff;
+      background:var(--dark-color) ;
+     }
+
+  /* Nav buttons */
+  .nav-buttons {
+    width: 100%;
+    height: 100px;
+    padding-top: 40px;
+    opacity: 1;
+    margin-bottom: 2em;
+  }
+  button {
+      font-size: 1.5em;
+      margin-right:1em;
+      border:0px;
+      cursor: pointer;
+   
+  }
+ 
+  button:hover{
+    color:#14FF85;
+
+  }
+  button.active {
+      padding-bottom: 10px;
+      border-bottom: solid 2px var(--light-color);
+  } 
+  
+   /* footer: forgot section */
+   .forgot-panel {
+    position: relative;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 10px;
+    border-top: solid 1px var(--light-color);    
+}
+
+    /* form styling */
+    .form-group input {
+        width: 100%;
+        height: 35px;
+        padding-left: 15px;
+        padding-right: 15px;
+    
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        background: rgba(255,255,255,.5);
+    }
+.form-group input:active {
+        background:var(--light-color);}
+        
+    .form-group label {
+      text-transform: uppercase;
+    }
+    input.submit {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1em;
+        text-align: center;
+        color: var(--dark-color);
+        padding: 8px 0px;
+        width: 100%;
+        height: 35px;
+        border: none;
+        border-radius: 20px;
+        margin-top: 23px;
+        background-color: var(--light-color);
+    }
+    input.submit:hover {
+        box-shadow:  0 0 5px var(--light-color);
+      -moz-box-shadow: 0 0 5px  var(--light-color);
+      -webkit-box-shadow: 0 0 5px  var(--light-color);
+      -o-box-shadow: 0 0 5px  var(--light-color);
+    }
+
+.alternate_option{
+    margin-left: auto;
+    padding-left: 35%;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1rem;
+}
+
+    /*Form positioning and animation */
+    
+    form#registerform {
+        left:500px;
+        top:-300px;
+        position:relative;
+    }
+
+    .forgot-panel {
+        margin-top:-300px;
+        color:var(--light-color);
+    }
+
+    form, .forgot-panel { 
+        position: relative;
+        transition: all 0.1s ease;
+    }
+    #loginBtn, #registerBtn {
+        transition: all .1s ease;
+
+    }
+    
+
+    .alternate_facebook{
+        color: #3F64AB;
+        padding: 8px 2px;
+        margin-left: 20%;
+        width: 20%;
+        height: 45px;
+        border: none;
+        border-radius: 25px;
+        margin-top: 10px;
+        background-color: white;
+    }
+
+    .alternate_facebook:hover{
+        color: var(--dark-color);
+        box-shadow:  0 0 5px var(--light-color);
+      -moz-box-shadow: 0 0 5px  var(--light-color);
+      -webkit-box-shadow: 0 0 5px  var(--light-color);
+      -o-box-shadow: 0 0 5px  var(--light-color);}
+
+      .alternate_google{
+        color: rgb(255, 115, 1);
+        margin-left: 10%;
+        padding: 8px 2px;
+        width: 20%;
+        height: 45px;
+        border: none;
+        border-radius: 25px;
+        margin-top: 10px;
+        background-color: white;
+    }
+
+    .alternate_google:hover{
+        color: var(--dark-color);
+        box-shadow:  0 0 5px var(--light-color);
+      -moz-box-shadow: 0 0 5px  var(--light-color);
+      -webkit-box-shadow: 0 0 5px  var(--light-color);
+      -o-box-shadow: 0 0 5px  var(--light-color);}
+
+      #registerBtn{
+        margin-left: 40%;
+        padding-bottom: 0px;
+    }
+
+/* .register-wrapper{
+    margin-top: -120px;
+} */
+
+
+    @media screen and (max-width: 1200px) {
+        .login-register-wrapper {
+            
+          
+            max-width: 35%;
+         
+           }
+        }
+    @media screen and (max-width: 1080px) {
+        .login-register-wrapper {
+            max-width: 50%;
+           }
+        }
+    @media screen and (max-width: 760px) {
+        .login-register-wrapper {
+        
+            max-width: 70%;
+           }
+           .alternate_option{
+            padding-left: 30%;
+          
+        }
+        #registerBtn{
+            margin-left: 30%;
+            padding-bottom: 0px;
+        }
+        }
+
+      
