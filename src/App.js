@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Pages/Footer/Footer';
 import SignUp_In from './components/Pages/SignUp_In/SignUp_In'
 import Admin from './components/Pages/Admin/Admin'
+import Support from './components/Pages/Support/Support'
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' exact component={Home} />
         <Route path='/SignUp_In' exact component={SignUp_In} />
         <Route path='/Admin' exact component={Admin} />
+        <Route path='/Support' exact component={Support} />
       </Switch>
       <Footer/>
     </Router>
