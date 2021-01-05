@@ -7,7 +7,7 @@ import Sidebar from "./Admin_side";
 function Admin() {
   return (
     <div>
-      <Sidebar />
+      <Sidebar/>
       <AdminHome />
     </div>
   );
