@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 function Support() {
   return (
-    <div className="support.wrapper">
-        <div class="container">  
+    <div className="support-wrapper">
+        <div class="support-container">  
   <form id="contact" action="" method="post">
     <h2 className="Support-Heading">Contact Us Form</h2>
     <fieldset>
