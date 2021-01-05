@@ -1,0 +1,33 @@
+
+:root {
+    --dark-color: #002433;
+    --light-color: #14ff85;
+  }
+  
+  * {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    color: inherit;
+    background-color: inherit;
+  }
+  
+  body {
+    background-color: #ffffff;
+  }
+.AdminPage_Wrapper{
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* padding-top: 50px; */
+  padding: 0 2em;
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px var(--light-color);
+  -moz-box-shadow: 0 0 10px var(--light-color);
+  -webkit-box-shadow: 0 0 10px var(--light-color);
+  -o-box-shadow: 0 0 10px var(--light-color); */
+  overflow: hidden;
+  color: #ffffff;
+  background: var(--dark-color);
+}

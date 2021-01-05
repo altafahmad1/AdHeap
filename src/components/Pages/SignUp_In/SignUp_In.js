@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { useSpring, animated } from "react-spring";
 
-import { FaAcquisitionsIncorporated } from "react-icons/fa";
-import { Button } from "../../Button";
 function SignUp_In() {
   const [registrationFormStatus, setRegistartionFormStatus] = useState(false);
   const loginProps = useSpring({
@@ -60,7 +58,9 @@ function SignUp_In() {
         </animated.form>
       </div>
       <animated.div className="forgot-panel" style={loginProps}>
-        <a herf="#">Forgot your password</a>
+      <Link to="/ForgetPass">
+<p>Forgot password?</p>
+      </Link>
       </animated.div>
     </div>
   );
@@ -72,7 +72,9 @@ function SignUp_In() {
         <input type="text" id="username" />
         <label for="password">PASSWORD</label>
         <input type="password" id="password" />
-        <input type="submit" value="submit" className="submit" />
+        <Link to='/Admin' className='btn-link'>
+          <input type="submit" value="submit" class="submit" />
+                  </Link>
         <p className="alternate_option">Or Signin With:</p>
         <button className="alternate_facebook">
           <Link>
@@ -101,7 +103,11 @@ function SignUp_In() {
           <input type="password" id="password" />
           <label for="confirmpassword">confirm password</label>
           <input type="password" id="confirmpassword" />
+
+          <Link to='/Admin' className='btn-link'>
           <input type="submit" value="submit" class="submit" />
+                  </Link>
+          
         </div>
       </React.Fragment>
     );

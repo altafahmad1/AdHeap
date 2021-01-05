@@ -15,7 +15,6 @@ function HeroSection({
   alt,
   imgStart
 }
-//redirection using a Jugaar(HahaHa)
 
 ) {
   return (
