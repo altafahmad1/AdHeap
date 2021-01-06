@@ -19,6 +19,7 @@ function App() {
         <Route path='/SignUp_In' exact component={SignUp_In} />
         <Route path='/Admin' exact component={Admin} />
         <Route path='/Support' exact component={Support} />
+        <Route path='/ContactUs' exact component={Support} />
       </Switch>
       <Footer/>
     </Router>

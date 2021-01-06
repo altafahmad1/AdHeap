@@ -13,17 +13,6 @@ function SignUp_In() {
     left: registrationFormStatus ? 0 : 500, // Register form sliding positions
   });
 
-  // const loginBtnProps = useSpring({
-  //   borderBottom: registrationFormStatus
-  //     ? "solid 0px transparent"
-  //     : "solid 2px #14FF85",  //Animate bottom border of login button
-  // });
-  // const registerBtnProps = useSpring({
-  //   borderBottom: registrationFormStatus
-  //     ? "solid 2px #14FF85"
-  //     : "solid 0px transparent", //Animate bottom border of register button
-  // });
-
   function registerClicked() {
     setRegistartionFormStatus(true);
   }
@@ -58,9 +47,9 @@ function SignUp_In() {
         </animated.form>
       </div>
       <animated.div className="forgot-panel" style={loginProps}>
-      <Link to="/ForgetPass">
-<p>Forgot password?</p>
-      </Link>
+        <Link to="/ForgetPass">
+          <p>Forgot password?</p>
+        </Link>
       </animated.div>
     </div>
   );
@@ -72,9 +61,9 @@ function SignUp_In() {
         <input type="text" id="username" />
         <label for="password">PASSWORD</label>
         <input type="password" id="password" />
-        <Link to='/Admin' className='btn-link'>
+        <Link to="/Admin" className="btn-link">
           <input type="submit" value="submit" class="submit" />
-                  </Link>
+        </Link>
         <p className="alternate_option">Or Signin With:</p>
         <button className="alternate_facebook">
           <Link>
@@ -104,10 +93,9 @@ function SignUp_In() {
           <label for="confirmpassword">confirm password</label>
           <input type="password" id="confirmpassword" />
 
-          <Link to='/Admin' className='btn-link'>
-          <input type="submit" value="submit" class="submit" />
-                  </Link>
-          
+          <Link to="/Admin" className="btn-link">
+            <input type="submit" value="submit" class="submit" />
+          </Link>
         </div>
       </React.Fragment>
     );
