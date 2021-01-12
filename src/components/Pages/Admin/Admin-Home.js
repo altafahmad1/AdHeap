@@ -13,8 +13,10 @@ function AdminHome() {
             system and  grow your Business
           </h3>
         </div>
-        <div className="Adv-action">
-          <button className="Adv-Button">Submit Ad</button>
+        <div className="Adv-action"><Link to="/Submit_Ad" className="btn-link">
+        <button className="Adv-Button" >Submit Ad</button>
+
+          </Link>
         </div>
       </div>
 {/*for website owners  */}
