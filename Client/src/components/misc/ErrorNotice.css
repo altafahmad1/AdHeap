@@ -1,0 +1,18 @@
+.error-notice {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    color: #f52f2f;
+    background-color: rgb(233, 135, 135);
+}
+
+.error-notice button {
+    font-size: 1rem;
+}
+
+.error-notice button:hover {
+    color: #fff;
+}

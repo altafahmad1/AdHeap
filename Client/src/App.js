@@ -29,7 +29,6 @@ function App() {
 
       const tokenRes = await axios.post("http://localhost:4000/user/tokenIsValid", null, 
       {headers: {"x-auth-token": token},});
-      console.log(tokenRes.data);
       if(tokenRes.data){
         const userRes = await axios.get("http://localhost:4000/user", 
         {headers: {"x-auth-token": token},});
@@ -48,7 +47,7 @@ function App() {
       <userContext.Provider value={{userData, setUserData}}>
         <Navbar />
         <Switch>
-          <Route path='/' exact component={userData.user ? SignUp_In : Home} />
+          <Route path='/' exact component={Home} />
           <Route path='/SignUp_In' exact component={SignUp_In} />
         </Switch>
         <Footer/>

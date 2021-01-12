@@ -8,20 +8,20 @@ const auth = require("./../middleware/auth");
 router.post("/register", async(req, res)=>{
     try{
 
-        const {name, email, password, confirmPassword} = req.body;
+        const {regName, regEmail, regPassword, regConfirmPassword} = req.body;
         
-        if (password.length < 8){
+        if (regPassword.length < 8){
             return res
                 .status(400)
                 .json({msg: "The password needs to be at least 8 characters long."});
         }
-        if (password !== confirmPassword){
+        if (regPassword !== regConfirmPassword){
             return res
                 .status(400)
                 .json({msg: "Your passwords do not match."});
         }
 
-        connection.query("SELECT email FROM users WHERE email = ? ", [email], (error, rows)=>{
+        connection.query("SELECT email FROM users WHERE email = ? ", [regEmail], (error, rows)=>{
             if(error){
                 res.json(error);
             }
@@ -32,11 +32,11 @@ router.post("/register", async(req, res)=>{
                         .json({msg: "A user with this email already exists."});
                 } else {
                     bcrypt.genSalt(10, function(err, salt) {
-                        bcrypt.hash(password, salt, function(err, hash) {
+                        bcrypt.hash(regPassword, salt, function(err, hash) {
                             let user = {
                                 id: uniqid(),
-                                name: name,
-                                email: email,
+                                name: regName,
+                                email: regEmail,
                                 password: hash
                             }
             
@@ -67,9 +67,9 @@ router.post("/register", async(req, res)=>{
 
 router.post("/login", async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const {logEmail, logPassword} = req.body;
 
-        connection.query("SELECT id, name ,password FROM users WHERE email = ? ", [email], (error, rows)=>{
+        connection.query("SELECT id, name ,password FROM users WHERE email = ? ", [logEmail], (error, rows)=>{
             if(error){
                 res.json(error);
             }
@@ -80,7 +80,7 @@ router.post("/login", async (req, res) => {
                         .json({msg: "No user with this email exists."});
                 } else {
 
-                    bcrypt.compare(password, rows[0].password, function(err, result) {
+                    bcrypt.compare(logPassword, rows[0].password, function(err, result) {
                         if(err){
                             res.json(error);
                         }
@@ -90,17 +90,19 @@ router.post("/login", async (req, res) => {
                                     .status(400)
                                     .json({msg: "Invalid Credentials."});
                             }
+                            else {
+                                const token = jwt.sign({id: rows[0].id}, process.env.JWT_SECRET);
+                                res.json({
+                                    token,
+                                    user: {
+                                        id: rows[0].id,
+                                        displayName: rows[0].name
+                                    },
+                                });
+                            }
                         }
                     });
-
-                    const token = jwt.sign({id: rows[0].id}, process.env.JWT_SECRET);
-                    res.json({
-                        token,
-                        user: {
-                            id: rows[0].id,
-                            displayName: rows[0].name
-                        },
-                    });
+                    
                 }
 
             }
