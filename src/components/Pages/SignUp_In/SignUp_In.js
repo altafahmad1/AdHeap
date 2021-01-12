@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { useSpring, animated } from "react-spring";
 
-function SignUp_In() {
+function SignUpIn() {
   const [registrationFormStatus, setRegistartionFormStatus] = useState(false);
   const loginProps = useSpring({
-    left: registrationFormStatus ? -500 : 0, // Login form sliding positions
+    left: registrationFormStatus ? -700 : 0, // Login form sliding positions
   });
   const registerProps = useSpring({
-    left: registrationFormStatus ? 0 : 500, // Register form sliding positions
+    left: registrationFormStatus ? 0 : 700, // Register form sliding positions
   });
 
   function registerClicked() {
@@ -102,4 +102,4 @@ function SignUp_In() {
   }
 }
 
-export default SignUp_In;
+export default SignUpIn;

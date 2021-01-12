@@ -1,181 +1,165 @@
-
- :root {
+:root {
   --dark-color: #002433;
   --light-color: #14ff85;
 }
 
-.Adv-container{
-  display: flex;
-  background-color: DodgerBlue;
-  max-width: 95%;
+.support-container {
+  background-color: var(--dark-color);
+  max-width: 50%;
+  width: 100%;
+  margin-top: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 2em;
-  border-radius: 10px;
-  overflow: hidden;
-  color: #ffffff;
-  background: var(--dark-color);
+  border-radius: 35px;
+  position: relative;
+  box-shadow: 0 0 10px var(--light-color);
+  -moz-box-shadow: 0 0 10px var(--light-color);
+  -webkit-box-shadow: 0 0 10px var(--light-color);
+  -o-box-shadow: 0 0 10px var(--light-color);
+}
+#contact {
+  background: transparent;
+  padding: 25px;
+  margin: 40px 0;
+  border-radius: 35px;
 }
 
-.Adv-container>.Adv-Text{
-  margin: 10px;
-  padding: 20px;
-  width: 50%;
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="url"],
+#contact textarea,
+#contact button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
 }
 
-.Adv-container>.Adv-action{
-  margin: 10px;
-  padding: 20px;
-  width: 50%;
+.Support-Heading {
+  color: white;
+  margin-left: 35%;
+  padding-bottom: 20px;
 }
 
-
-.sell-container{
-  display: flex;
-  background-color: DodgerBlue;
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 2em;
-  border-radius: 10px;
-  overflow: hidden;
-  color: #ffffff;
-  background: var(--dark-color);
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
 }
 
-.sell-container>.sell-Text{
-  margin: 10px;
-  padding: 20px;
-  width: 60%;
+#contact h4 {
+  margin: 5px 0 15px;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
 }
 
-.sell-container>.sell-action{
-  margin: 10px;
-  padding: 20px;
-  width: 40%;
-}
-.Adv-Heading,.sell-Heading {
-margin-bottom: 20px;
-margin-top: 40px;
-font-size: 32px;
-line-height: 1.1;
-color: white;
-width: 50%;
-}
-
-.Adv-Subheading,.sell-Subheading {
-margin-bottom: 24px;
-margin-top: 15px;
-font-size: 20px;
-font-weight: normal;
-color: var(--light-color);
-width: 400px;
-}
-
-.Adv-Button{
-color: var(--dark-color);
-
-background-color: var(--light-color);
-padding:10px;
-width: 270px;
-height: 60px;
-font-weight: 600;
-border-radius: 18px;
-margin-bottom: 40px;
-margin-left: 50%;
-margin-top: 90px;
-align-items:left;
-}
-
-.sell-Button{
-color: var(--dark-color);
-
-background-color: var(--light-color);
-padding:10px;
-width: 270px;
-height: 60px;
-font-weight: 600;
-border-radius: 18px;
-margin-bottom: 40px;
-margin-left: 37%;
-margin-top: 90px;
-align-items:left;
-}
-.Adv-Button:hover{
-box-shadow: 0 0 5px var(--light-color);
--moz-box-shadow: 0 0 5px var(--light-color);
--webkit-box-shadow: 0 0 5px var(--light-color);
--o-box-shadow: 0 0 5px var(--light-color);
-color: var(--dark-color);
-background-color: var(--light-color);
-}
-.sell-Button:hover{
-box-shadow: 0 0 5px var(--light-color);
--moz-box-shadow: 0 0 5px var(--light-color);
--webkit-box-shadow: 0 0 5px var(--light-color);
--o-box-shadow: 0 0 5px var(--light-color);
-color: var(--dark-color);
-background-color: var(--light-color);
-}
-@media screen and (max-width: 1050px) {
-.Adv-container{
-  display: flex;
-  flex-direction: column;
-  height: 70vh;
+fieldset {
+  border: medium none !important;
+  border-radius: 15px;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
   width: 100%;
 }
- 
-.Adv-container>.Adv-Text{
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 20px;
-  width: 100%;
+#contact > input {
+  color: var(--dark-color);
 }
-.Adv-container>.Adv-action{
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 20px;
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="url"],
+#contact textarea {
+  color: var(--dark-color);
+
   width: 100%;
-  align-items: center;
-}
-.Adv-Button{
-  width: 50%;
-  margin-left: 0%;
-  margin-top: -5%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 0 5px;
+  padding: 10px;
 }
 
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact input[type="tel"]:hover,
+#contact input[type="url"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
 
-.sell-container{
-  display: flex;
-  flex-direction: column;
-  height: 70vh;
+#contact textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: none;
+  color: #14ff85;
+}
+
+#contact button[type="submit"] {
+  cursor: pointer;
   width: 100%;
+  background: var(--light-color);
+  color: var(--dark-color);
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 20px;
 }
- 
-.sell-container>.sell-Text{
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 20px;
-  width: 100%;
+
+#contact button[type="submit"]:hover {
+  box-shadow: 0 0 5px var(--light-color);
+  -moz-box-shadow: 0 0 5px var(--light-color);
+  -webkit-box-shadow: 0 0 5px var(--light-color);
+  -o-box-shadow: 0 0 5px var(--light-color);
 }
-.sell-container>.sell-action{
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 20px;
-  width: 100%;
-  align-items: center;
+
+::-webkit-input-placeholder {
+  color: var(--dark-color);
 }
-.sell-Button{
-  width: 50%;
-  margin-left: 0%;
-  margin-top: -10%;
+
+:-moz-placeholder {
+  color: var(--dark-color);
 }
+
+::-moz-placeholder {
+  color: var(--dark-color);
+}
+
+:-ms-input-placeholder {
+  color: var(--dark-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .support-container {
+    max-width: 60%;
+    width: 100%;
+  }
+  .Support-Heading {
+    margin-left: 30%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .Support-Heading {
+    margin-left: 25%;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .support-container {
+    max-width: 70%;
+    width: 100%;
+  }
+  .Support-Heading {
+    margin-left: 20%;
+  }
+}
+@media screen and (max-width: 760px) {
+  .support-container {
+    max-width: 85%;
+    width: 100%;
+  }
+  .Support-Heading {
+    margin-left: 20%;
+  }
 }
