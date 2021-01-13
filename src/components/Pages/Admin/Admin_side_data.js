@@ -12,13 +12,13 @@ export const SidebarData = [
   },
   {
     title: 'Account',
-    path: '/Acoount',
+    path: '/Account',
     icon: <FaIcons.FaUser />,
     cName: 'nav-text'
   },
   {
     title: 'Payments',
-    path: '/products',
+    path: '/Payment',
     icon: <FaIcons.FaMoneyBill />,
     cName: 'nav-text'
   },

@@ -46,7 +46,15 @@
   text-transform: uppercase;
   margin-bottom: 16px;
 }
-
+.top-line-inverse {
+  color:#f00946;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
 .heading {
   margin-bottom: 24px;
   font-size: 48px;

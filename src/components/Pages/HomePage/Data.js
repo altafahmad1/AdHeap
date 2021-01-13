@@ -9,7 +9,8 @@ export const homeObjOne = {
     buttonLabel: 'Get Started',
     imgStart: '',
     img: 'images/svg-1.svg',
-    alt: 'Credit Card'
+    alt: 'Credit Card',
+    topcolor:true
   };
   
   export const homeObjTwo = {
@@ -23,7 +24,9 @@ export const homeObjOne = {
     buttonLabel: 'Learn More',
     imgStart: '',
     img: 'images/svg-5.svg',
-    alt: 'Vault'
+    alt: 'Vault',
+    topcolor:true
+
   };
   
   export const homeObjThree = {
@@ -31,8 +34,8 @@ export const homeObjOne = {
     lightText: false,
     lightTextDesc: false,
     topLine: 'Exclusive Access',
-
     headline: 'Reach your Ideal Customers',
+    topcolor: false,
     description:
       'Get access to our exclusive Services to advertise yor product and reach customers anywhere in the world Or earn money from our platform',
     buttonLabel: 'Start Now',
