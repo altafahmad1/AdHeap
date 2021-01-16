@@ -18,9 +18,7 @@ function AdminHome() {
             </ol>
           </h3>
         </div>
-        <div className="Instruction-action">
-          <h4>will insert image here later</h4>
-        </div>
+      
       </div>
 
       <div className="ad-details-container">
