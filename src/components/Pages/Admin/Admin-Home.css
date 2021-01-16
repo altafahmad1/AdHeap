@@ -121,6 +121,7 @@ align-items:left;
   color: var(--dark-color);
   background-color: var(--light-color);
 }
+
 @media screen and (max-width: 1050px) {
   .Adv-container{
     display: flex;
@@ -178,4 +179,10 @@ align-items:left;
     margin-left: 0%;
     margin-top: -10%;
   }
+  
+@media screen and (max-width: 760px) {
+.Adv-Button{
+  margin-bottom: 50px;
+}
+}
   }

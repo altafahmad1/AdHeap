@@ -32,7 +32,6 @@ function Navbar() {
         <nav className="navbar">
           <div className="navbar-container ">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              {/* <MdFingerprint className='navbar-icon' /> */}
               <img
                 src="images/logo-nav_1.png"
                 alt="Logo"
@@ -49,15 +48,7 @@ function Navbar() {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  to="/services"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Services
-                </Link>
-              </li>
+           
               <li className="nav-item">
                 <Link
                   to="/ContactUs"

@@ -8,7 +8,7 @@ export const homeObjOne = {
       'Get access to our exclusive Services to advertise yor product and reach customers anywhere in the world Or earn money from our platform',
     buttonLabel: 'Get Started',
     imgStart: '',
-    img: 'images/svg-1.svg',
+    img: 'images/logo-nav1.svg',
     alt: 'Credit Card',
     topcolor:true
   };

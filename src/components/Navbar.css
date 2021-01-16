@@ -111,9 +111,9 @@
 
   .nav-links {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     width: 100%;
-    display: table;
+    display: flex;
   }
 
   .nav-links:hover {

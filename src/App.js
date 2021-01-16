@@ -11,7 +11,9 @@ import Sidebar from "./components/Pages/Admin/Admin_side";
 import SubmitAd from "./components/Pages/Submit_Ad/Submit_Ad";
 import NavbarUser from "./components/Pages/NavbarUser/NavbarUser";
 import Account from "./components/Pages/Account/Account";
+import Settings from "./components/Pages/Settings/Settings";
 import Payment from "./components/Pages/Payment/Payment";
+
 function App() {
   return (
     <Router>
@@ -51,6 +53,12 @@ function App() {
           <NavbarUser />
           <Sidebar />
           <Payment />
+        </Route>
+
+        <Route path="/Settings">
+          <NavbarUser />
+          <Sidebar />
+          <Settings />
         </Route>
 
       </Switch>

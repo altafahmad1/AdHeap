@@ -15,13 +15,12 @@
     background-color: #ffffff;
   }
   
-  .account-wrapper{
+  .Settings-wrapper{
     max-width: 70%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 40px;
     margin-bottom: 40px;
-    /* padding-top: 50px; */
     padding: 0 2em;
     border-radius: 25px;
     box-shadow: 0 0 10px var(--light-color);
@@ -33,13 +32,13 @@
     background: var(--dark-color);
   }
 
-.head>h1{
+.Settings-head>h1{
   font-size: 35px;
   margin-left: 38%; 
   margin-top: 25px;
   margin-bottom: 5px; }
   
-.top-wrapper{
+.Settings-top-wrapper{
   margin-left: 45%;
   margin-top: 25px;
   margin-bottom: 15px; }
@@ -112,7 +111,7 @@ tr {
 
   .dcf-table thead td, .dcf-table thead th {
     padding-bottom: .75em;
-    vertical-align: bottom
+    vertical-align: bottom;
   }
 
   .dcf-table tbody td, .dcf-table tbody th, .dcf-table tfoot td, .dcf-table tfoot th {
@@ -188,26 +187,48 @@ tr {
   }
     
   @media screen and (max-width: 1200px) {
-    .login-register-wrapper {
-      max-width: 35%;
+    .Settings-wrapper {
+      max-width: 65%;
     }
   }
 
 
 
   @media screen and (max-width: 1080px) {
-    .account-wrapper {
+    .Settings-wrapper {
       max-width: 70%;
     }
+    .Settings-top-wrapper{
+        margin-left: 40%;
+
+    }
+    
+    .Settings-head>h1{
+        font-size: 28px;
+        margin-left: 30%; 
+        }
+        .update-btn,.changepass-btn,.delete-btn{
+            font-size: 28px;
+        }   
   }
   @media screen and (max-width: 760px) {
-    .account-wrapper {
+    .Settings-wrapper {
       max-width: 90%;
     }
-    .alternate_option {
-      padding-left: 30%;
+    .Settings-top-wrapper{
+        margin-left: 35%;
+
     }
-   
-  }
+    
+    .Settings-head>h1{
+        font-size: 28px;
+        margin-left: 25%; 
+        }
+
+    .update-btn,.changepass-btn,.delete-btn{
+            font-size: 20px;
+                }
+
+    }
   
 
