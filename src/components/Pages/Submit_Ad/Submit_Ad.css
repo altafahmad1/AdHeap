@@ -448,14 +448,14 @@ border: 2px solid #BDBDBD;
 }
 
 ::-webkit-input-placeholder {
-  color: rgb(20, 255, 133,0.4);
+  color: rgb(20, 255, 133,0.8);
 }
 :-moz-placeholder {
-  color: rgb(20, 255, 133,0.4);
+  color: rgb(20, 255, 133,0.8);
 }
 ::-moz-placeholder {
-  color: rgb(20, 255, 133,0.4);
+  color: rgb(20, 255, 133,0.8);
 }
 :-ms-input-placeholder {
-  color: rgb(20, 255, 133,0.4);
+  color: rgb(20, 255, 133,0.8);
 }
