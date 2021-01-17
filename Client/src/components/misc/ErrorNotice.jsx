@@ -1,5 +1,5 @@
 import React from "react";
-import "./ErrorNotice.css";
+import "./Notice.css";
 
 export default function ErrorNotice(props){
     return (

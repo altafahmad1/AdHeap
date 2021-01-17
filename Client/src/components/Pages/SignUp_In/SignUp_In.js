@@ -1,34 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import {useHistory} from "react-router-dom";
-import "../SignUp_In/SignUp_In.css";
+import "./SignUp_In.css";
+import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 import UserContext from "../../../context/UserContext";
 import ErrorNotice from "./../../misc/ErrorNotice";
 
-
-function SignUp_In() {
+function SignUpIn() {
   const [registrationFormStatus, setRegistartionFormStatus] = useState(false);
   const loginProps = useSpring({
-    left: registrationFormStatus ? -500 : 0, // Login form sliding positions
+    left: registrationFormStatus ? -700 : 0, // Login form sliding positions
   });
   const registerProps = useSpring({
-    left: registrationFormStatus ? 0 : 500, // Register form sliding positions
+    left: registrationFormStatus ? 0 : 700, // Register form sliding positions
   });
 
-  // const loginBtnProps = useSpring({
-  //   borderBottom: registrationFormStatus
-  //     ? "solid 0px transparent"
-  //     : "solid 2px #14FF85",  //Animate bottom border of login button
-  // });
-  // const registerBtnProps = useSpring({
-  //   borderBottom: registrationFormStatus
-  //     ? "solid 2px #14FF85"
-  //     : "solid 0px transparent", //Animate bottom border of register button
-  // });
+  function registerClicked() {
+    setRegistartionFormStatus(true);
+  }
+  function loginClicked() {
+    setRegistartionFormStatus(false);
+  }
 
+  
   const history = useHistory();
+
+  const {userData, setUserData} = useContext(UserContext);
+
+  if(userData.user){
+    history.push("/user/" + userData.user.id + "/Admin");
+  }
 
   const [regError, setRegError] = useState("");
   const [logError, setLogError] = useState("");
@@ -39,7 +42,7 @@ function SignUp_In() {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
 
-  const {setUserData} = useContext(UserContext);
+  
 
   const regSubmit = async (e) => {
     try{
@@ -52,10 +55,12 @@ function SignUp_In() {
       });
       setUserData({
         token: loginRes.data.token,
-        user: loginRes.data.user
+        user: loginRes.data.user,
+        isLoggedIn: true,
+        isLoading: false
       });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/user/" + loginRes.data.user.id + "/Admin");
     } catch(err){
       err.response.data.msg && setRegError(err.response.data.msg);
     }
@@ -68,21 +73,16 @@ function SignUp_In() {
       const loginRes = await axios.post("/user/login", loginUser);
       setUserData({
         token: loginRes.data.token,
-        user: loginRes.data.user
+        user: loginRes.data.user,
+        isLoggedIn: true,
+        isLoading: false
       });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/user/" + loginRes.data.user.id + "/Admin");
     } catch(err){
       err.response.data.msg && setLogError(err.response.data.msg);
     }
   };
-
-  function registerClicked() {
-    setRegistartionFormStatus(true);
-  }
-  function loginClicked() {
-    setRegistartionFormStatus(false);
-  }
 
   return (
     <div className="login-register-wrapper">
@@ -111,19 +111,20 @@ function SignUp_In() {
             <label htmlFor="password">PASSWORD</label>
             <input type="password" required name="logPassword" id="password" onChange={e => setLogPassword(e.target.value)} />
             <input type="submit" value="submit" className="submit" />
-            <p className="alternate_option">Or Signin With:</p>
 
+            <p className="alternate_option">Or Signin With:</p>
             <button className="alternate_facebook">
-                  <FaFacebookF />
-              </button>
+                <FaFacebookF />
+            </button>
 
             <button className="alternate_google">
                 <FaGoogle />
-            </button> 
+            </button>
           </React.Fragment>
         </animated.form>
 
-        <animated.form onSubmit={regSubmit} action="" id="registerform" style={registerProps}>
+
+        <animated.form onSubmit={regSubmit} id="registerform" style={registerProps}>
           <React.Fragment>
             {regError && <ErrorNotice message={regError} clearError={() => setRegError("")}/>}
             <div className="register-wrapper">
@@ -141,11 +142,13 @@ function SignUp_In() {
         </animated.form>
       </div>
       <animated.div className="forgot-panel" style={loginProps}>
-        <a herf="#">Forgot your password?</a>
+        <Link to="forgotPassword">
+          <span style={{cursor: "pointer"}}>Forgot Password?</span>
+        </Link>
       </animated.div>
     </div>
   );
 
 }
 
-export default SignUp_In;
+export default SignUpIn;

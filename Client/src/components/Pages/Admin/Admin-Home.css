@@ -1,0 +1,181 @@
+
+ :root {
+    --dark-color: #002433;
+    --light-color: #14ff85;
+  }
+  
+  .Adv-container{
+    display: flex;
+    background-color: DodgerBlue;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background: var(--dark-color);
+  }
+
+  .Adv-container>.Adv-Text{
+    margin: 10px;
+    padding: 20px;
+    width: 50%;
+  }
+  
+  .Adv-container>.Adv-action{
+    margin: 10px;
+    padding: 20px;
+    width: 50%;
+  }
+
+
+  .sell-container{
+    display: flex;
+    background-color: DodgerBlue;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background: var(--dark-color);
+  }
+  
+  .sell-container>.sell-Text{
+    margin: 10px;
+    padding: 20px;
+    width: 60%;
+  }
+  
+  .sell-container>.sell-action{
+    margin: 10px;
+    padding: 20px;
+    width: 40%;
+  }
+.Adv-Heading,.sell-Heading {
+  margin-bottom: 20px;
+  margin-top: 40px;
+  font-size: 32px;
+  line-height: 1.1;
+  color: white;
+width: 50%;
+}
+
+.Adv-Subheading,.sell-Subheading {
+  margin-bottom: 24px;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--light-color);
+width: 400px;
+}
+
+.Adv-Button{
+  color: var(--dark-color);
+ 
+background-color: var(--light-color);
+padding:10px;
+width: 270px;
+height: 60px;
+font-weight: 600;
+border-radius: 18px;
+margin-bottom: 40px;
+margin-left: 50%;
+margin-top: 90px;
+align-items:left;
+}
+
+.sell-Button{
+  color: var(--dark-color);
+ 
+background-color: var(--light-color);
+padding:10px;
+width: 270px;
+height: 60px;
+font-weight: 600;
+border-radius: 18px;
+margin-bottom: 40px;
+margin-left: 37%;
+margin-top: 90px;
+align-items:left;
+}
+.Adv-Button:hover{
+  box-shadow: 0 0 5px var(--light-color);
+  -moz-box-shadow: 0 0 5px var(--light-color);
+  -webkit-box-shadow: 0 0 5px var(--light-color);
+  -o-box-shadow: 0 0 5px var(--light-color);
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+.sell-Button:hover{
+  box-shadow: 0 0 5px var(--light-color);
+  -moz-box-shadow: 0 0 5px var(--light-color);
+  -webkit-box-shadow: 0 0 5px var(--light-color);
+  -o-box-shadow: 0 0 5px var(--light-color);
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+@media screen and (max-width: 1050px) {
+  .Adv-container{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 100%;
+  }
+   
+  .Adv-container>.Adv-Text{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+  }
+  .Adv-container>.Adv-action{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    align-items: center;
+  }
+  .Adv-Button{
+    width: 50%;
+    margin-left: 0%;
+    margin-top: -5%;
+  }
+
+
+  .sell-container{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 100%;
+  }
+   
+  .sell-container>.sell-Text{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+  }
+  .sell-container>.sell-action{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    align-items: center;
+  }
+  .sell-Button{
+    width: 50%;
+    margin-left: 0%;
+    margin-top: -10%;
+  }
+  }

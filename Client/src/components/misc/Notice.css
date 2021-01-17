@@ -1,0 +1,34 @@
+.error-notice {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    color: #f54646;
+    background-color: rgb(247, 181, 181);
+}
+
+.success-notice {
+    border-radius: 5px;
+    display: flex;
+    height: 25%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    color: #000000;
+    background-color: rgb(182, 245, 153);
+}
+
+.error-notice, .success-notice button {
+    font-size: 1rem;
+}
+
+.error-notice button:hover {
+    color: #fff;
+}
+
+.success-notice button:hover {
+    color: #f54646;
+}
