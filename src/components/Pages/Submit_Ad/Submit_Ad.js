@@ -20,23 +20,45 @@ function AdminHome() {
         </div>
       </div>
       {/* ad workspace functions */}
-      {/* <div className="ad-workspace-container">
-        <div class="ad-workspace-wrapper">
-          <div class="ad-workspace-header">
-            <h1>My header</h1>
-          </div>
-          <div class="ad-workspace-div">
-            <h1>Left</h1>
-          </div>
-          <div class="ad-workspace-div">
-            <h1>Right</h1>
+      <div className="ad-workspace-container">
+        <div className="ad-workspace-head"><div className="ad-workspace-heading">
+          <h1>Recent Activity</h1>
+        </div></div>
+        
+        <div className="ad-workspace-wrapper">
+          <div className="ad-wrapper-content">
+            <div className="ad-workspace-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJ0AtSAKRRWVNmoiIzO5gMtaSJMgm0EgxJA&usqp=CAU"
+                alt=""
+                srcset=""
+              ></img>
+            </div>
+            <div className="ad-workspace-details">
+              <h5>Title: aluminum</h5>
+              <h5>Category: metal</h5>
+              <h5>Time-left: 19 hours</h5>
+            </div>
           </div>
         </div>
-      </div> */}
+        <div className="ad-workspace-wrapper">
+          <div className="ad-wrapper-content">
+            <div className="ad-workspace-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJ0AtSAKRRWVNmoiIzO5gMtaSJMgm0EgxJA&usqp=CAU"
+                alt=""
+                srcset=""
+              ></img>
+            </div>
+            <div className="ad-workspace-details">
+              <h5>Title: aluminum</h5>
+              <h5>Category: metal</h5>
+              <h5>Time-left: 19 hours</h5>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      
-
-      {/* form for ad details */}
       <div className="ad-details-container">
         <div className="ad-details-form">
           <form className="ad-form" action="" method="post">
@@ -68,18 +90,6 @@ function AdminHome() {
                 required
               ></input>
             </fieldset>
-            {/* <fieldset> */}
-            {/* <input
-              placeholder="Targeted country"
-              type="text"
-              tabindex="2"
-              required
-            >
-         </input> */}
-            {/* <input placeholder="Targeted country"
-              type="select"
-              tabindex="2"
-              required> */}
             <select id="country" name="country">
               <option value="Afganistan">Afghanistan</option>
               <option value="Albania">Albania</option>
@@ -346,7 +356,6 @@ function AdminHome() {
               <option value="Zambia">Zambia</option>
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
-            {/* </fieldset> */}
             <fieldset>
               <input
                 placeholder="Details(optional)"
