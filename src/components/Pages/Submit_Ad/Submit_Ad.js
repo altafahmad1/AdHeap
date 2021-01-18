@@ -19,11 +19,31 @@ function AdminHome() {
           </h3>
         </div>
       </div>
-      {/* ad workspace functions */}
-      <div className="ad-workspace-container">
-        <div className="ad-workspace-head"><div className="ad-workspace-heading">
+
+      <div className="ad-workspace-head"><div className="ad-workspace-heading">
           <h1>Recent Activity</h1>
         </div></div>
+        
+      {/* ad workspace functions */}
+      <div className="ad-workspace-container">
+      
+        <div className="ad-workspace-wrapper">
+          <div className="ad-wrapper-content">
+            <div className="ad-workspace-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJ0AtSAKRRWVNmoiIzO5gMtaSJMgm0EgxJA&usqp=CAU"
+                alt=""
+                srcset=""
+              ></img>
+            </div>
+            <div className="ad-workspace-details">
+              <h5>Title: aluminum</h5>
+              <h5>Category: metal</h5>
+              <h5>Time-left: 19 hours</h5>
+            </div>
+          </div>
+        </div>
+
         
         <div className="ad-workspace-wrapper">
           <div className="ad-wrapper-content">
