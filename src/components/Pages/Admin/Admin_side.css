@@ -9,13 +9,27 @@
     justify-content: start;
     align-items: center;
   }
-  
-  .menu-bars {
+
+.menu-bars {
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
   }
-  
+.balance-display{
+  margin-left: 79%;
+  color: #ffffff;
+}
+.balance-icon{
+font-size: 2rem;
+}
+.balance-icon, .balance-amount{
+float: left;
+}
+.balance-amount{
+  margin-left: 20px;
+  color: var(--light-color);
+  font-size: 20px;
+}
   .side-menu {
     background-color: var(--dark-color);
     width: 250px;
@@ -80,7 +94,25 @@
     margin-left: 16px;
   }
 
+  @media screen and (max-width: 1050px) {
 
+    .balance-display{
+      margin-left: 76%;
+      color: #ffffff;
+    }
+  }
+  @media screen and (max-width: 800px) {
 
-
+    .balance-display{
+      margin-left: 68%;
+      color: #ffffff;
+    }
+  }
  
+  @media screen and (max-width: 650px) {
+
+    .balance-display{
+      margin-left: 56%;
+      color: #ffffff;
+    }
+  }

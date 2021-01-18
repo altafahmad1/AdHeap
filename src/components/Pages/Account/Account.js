@@ -26,10 +26,10 @@ function Account() {
 			<td>Email</td>
 			<td>altaf123@gmail.com</td>
 		</tr>
-		<tr>
+		{/* <tr>
 			<td>Location</td>
 			<td>Pakistan</td>
-		</tr>
+		</tr> */}
 		<tr>
 			<td>Account-Type</td>
 			<td>Admin</td>
