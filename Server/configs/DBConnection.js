@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: process.env.MYSQL_PASSWORD,
-    database: "lab7"
+    database: "adheap"
 });
 
 connection.connect((err) => {

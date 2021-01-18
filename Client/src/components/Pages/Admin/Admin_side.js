@@ -20,19 +20,19 @@ function Sidebar() {
     },
     {
       title: 'Account',
-      path: '/user/' + userData.user.id + '/Account',
+      path: '/user/' + userData.user.id_user + '/Account',
       icon: <FaIcons.FaUser />,
       cName: 'nav-text'
     },
     {
       title: 'Payments',
-      path: '/user/' +  userData.user.id + '/payment',
+      path: '/user/' +  userData.user.id_user + '/payment',
       icon: <FaIcons.FaMoneyBill />,
       cName: 'nav-text'
     },
     {
       title: 'Settings',
-      path: '/user/' + userData.user.id +  '/settings',
+      path: '/user/' + userData.user.id_user +  '/settings',
       icon: <IoIcons.IoMdSettings />,
       cName: 'nav-text'
     },

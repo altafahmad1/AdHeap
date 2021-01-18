@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "../Admin/Admin-Home.css";
 import { Link } from "react-router-dom";
-import { Route, useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import UserContext from "./../../../context/UserContext";
 
 function AdminHome() {
@@ -9,7 +9,7 @@ function AdminHome() {
   const history = useHistory();
   const {userData} = useContext(UserContext);
   function gotoWorkspace(){
-    history.push("/user/" + userData.user.id + "/workspace");
+    history.push("/user/" + userData.user.id_user + "/workspace");
   }
   
   return (

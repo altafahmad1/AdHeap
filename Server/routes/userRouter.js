@@ -16,6 +16,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET
   });
 
+  //To convert JS Date to MYSQL format
+function dateSQL(cDate) {
+    return cDate.getFullYear()
+           + '-'
+           + ("0" + (cDate.getMonth()+1)).slice(-2)
+           + '-'
+           + ("0" + cDate.getDate()).slice(-2);
+}
 
 
 const upload = multer({
@@ -36,7 +44,7 @@ const multerUploads = multer({ storage }).single('file');
 router.post("/register", async(req, res)=>{
     try{
 
-        const {regName, regEmail, regPassword, regConfirmPassword} = req.body;
+        const {regFName, regLName, regEmail, regPassword, regConfirmPassword} = req.body;
         
         if (regPassword.length < 8){
             return res
@@ -49,7 +57,7 @@ router.post("/register", async(req, res)=>{
                 .json({msg: "Your passwords do not match."});
         }
 
-        connection.query("SELECT email FROM users WHERE email = ? ", [regEmail], (error, rows)=>{
+        connection.query("SELECT email FROM user WHERE email = ? ", [regEmail], (error, rows)=>{
             if(error){
                 res
                     .status(500)
@@ -63,16 +71,25 @@ router.post("/register", async(req, res)=>{
                 } else {
                     bcrypt.genSalt(10, function(err, salt) {
                         bcrypt.hash(regPassword, salt, function(err, hash) {
+                            const today = dateSQL(new Date());
+                            const balance = 5.00;
+
                             const user = {
-                                id: uniqid(),
-                                name: regName,
+                                id_user: uniqid(),
+                                first_name: regFName,
+                                last_name: regLName,
                                 email: regEmail,
-                                password: hash
+                                password: hash,
+                                user_since: today,
+                                balance: balance
                             }
             
-                            connection.query("INSERT INTO users set ?", user, (error, rows)=>{
+                            connection.query("INSERT INTO user set ?", user, (error, rows)=>{
                                 if(error){
-                                    res.json(error);
+                                    console.log(error);
+                                    // res
+                                    //     .status(500)
+                                    //     .json(error);
                                 }
                                 else{
                                     res
@@ -99,7 +116,7 @@ router.post("/login", async (req, res) => {
     try {
         const {logEmail, logPassword} = req.body;
 
-        connection.query("SELECT id, name ,password FROM users WHERE email = ? ", [logEmail], (error, rows)=>{
+        connection.query("SELECT id_user, first_name, last_name, password FROM user WHERE email = ? ", [logEmail], (error, rows)=>{
             if(error){
                 res
                     .status(500)
@@ -125,12 +142,12 @@ router.post("/login", async (req, res) => {
                                     .json({msg: "Invalid Credentials."});
                             }
                             else {
-                                const token = jwt.sign({id: rows[0].id}, process.env.JWT_SECRET);
+                                const token = jwt.sign({id: rows[0].id_user}, process.env.JWT_SECRET);
                                 res.json({
                                     token,
                                     user: {
-                                        id: rows[0].id,
-                                        displayName: rows[0].name
+                                        id: rows[0].id_user,
+                                        displayName: rows[0].first_name + rows[0].last_name
                                     },
                                 });
                             }
@@ -150,7 +167,7 @@ router.post("/login", async (req, res) => {
 
 router.delete("/delete", auth, async (req, res) => {
     try {
-        connection.query("DELETE FROM users WHERE id = ? ", [req.user], (error, rows)=>{
+        connection.query("DELETE FROM user WHERE id_user = ? ", [req.user], (error, rows)=>{
             if(error){
                 res
                     .status(500)
@@ -180,7 +197,7 @@ router.post("/tokenIsValid", async (req, res) => {
         if(!verified)
             return res.json(false);
         
-        connection.query("SELECT * FROM users WHERE id = ?", [verified.id], (error, rows)=>{
+        connection.query("SELECT * FROM user WHERE id_user = ?", [verified.id], (error, rows)=>{
             if(error){
                 res.json(error);
             }
@@ -202,7 +219,7 @@ router.post("/tokenIsValid", async (req, res) => {
 router.post("/requestPassword", async(req, res)=>{
     try{
         const email = req.body.email;
-        connection.query("SELECT name, email FROM users WHERE email = ? ", [email], (error, rows)=>{
+        connection.query("SELECT first_name, email FROM user WHERE email = ? ", [email], (error, rows)=>{
             if(error){
                 res
                     .status(500)
@@ -215,16 +232,17 @@ router.post("/requestPassword", async(req, res)=>{
                         .json({msg: "No user with this email exists."});
                 }
                 else {
-                    const name = rows[0].name;
+                    const name = rows[0].first_name;
                     const newPass = uniqid();
 
                     bcrypt.genSalt(10, function(err, salt) {
                         bcrypt.hash(newPass, salt, function(err, hash) {
-                            connection.query("UPDATE users SET password = ? WHERE email = ? ", [hash, email], (error, rows)=>{
+                            connection.query("UPDATE user SET password = ? WHERE email = ? ", [hash, email], (error, rows)=>{
                                 if(error){
-                                    res
-                                        .status(500)
-                                        res.json(error);
+                                    console.log(error);
+                                    // res
+                                    //     .status(500)
+                                    //     res.json(error);
                                 }
                                 else {
                                     forgotPasswordEmail = `<div style="background-color: #002433; color:#fff; 
@@ -253,9 +271,10 @@ router.post("/requestPassword", async(req, res)=>{
         
                                     transporter.sendMail(forgotPasswordOptions, function(error, info){
                                         if (error) {
-                                          res
-                                            .status(500)
-                                            .json(error);
+                                            console.log(error);
+                                        //   res
+                                        //     .status(500)
+                                        //     .json(error);
                                         } else {
                                           res
                                             .status(201)
@@ -271,36 +290,83 @@ router.post("/requestPassword", async(req, res)=>{
             }
         })
     } catch(err){
-        res
-            .status(500)
-            .json(err);
+        console.log(err);
+        // res
+        //     .status(500)
+        //     .json(err);
     }
 });
 
 router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
     try {
+        console.log(req.file);
+        const {adTitle, adDuration, adCategory, adCountry, adDetails} = req.body;
         const userId = req.params.userId;
         const adId = uniqid();
 
-        await cloudinary.uploader.upload(req.file.path, {public_id: adId}).then((result) => {
-            const newAd = {
-                ad_id: adId,
-                image: result.secure_url,
-                id: userId
+        connection.query("SELECT balance FROM user WHERE id_user = ? ", [userId], (error, rows) =>{
+            if(error){
+                console.log(1);
+                console.log(error)
+                // res
+                //     .status(500)
+                //     .json(error);
             }
-            connection.query("INSERT INTO ads set ? ", [newAd], (error, rows) => {
-                if(error){
-                    
-                } else {
+            else {
+                console.log((parseFloat(adDuration) * 0.5) + " " + parseFloat(rows[0].balance));
+                console.log((parseFloat(adDuration) * 0.5) > parseFloat(rows[0].balance));
+                if((parseFloat(adDuration) * 0.5) > parseFloat(rows[0].balance)){
                     res
-                        .status(201)
-                        .json({msg: "Ad Created Successfully."});
+                        .status(400)
+                        .json({msg: "Your balance is insufficient for this ad."});
                 }
-            });
-        }).catch((error) =>  {
-            res
-                .status(500)
-                .json(error);
+                else {
+                    const updated_balance = parseFloat(rows[0].balance) - (parseFloat(adDuration) * 0.5);
+                    connection.query("UPDATE user SET balance = ? WHERE id_user = ?", [updated_balance, userId], async (error, rows)=>{
+                        if(error){
+                            console.log(2);
+                            console.log(error);
+                            // res
+                            //     .status(500)
+                            //     .json(err);
+                        }
+                        else {
+                            
+                            await cloudinary.uploader.upload(req.file.path, {public_id: adId}).then((result) => {
+                                const date = new Date();
+                                const startingDate = dateSQL(date);
+                                date.setDate(date.getDate() + parseInt(adDuration));
+                                const endingDate = dateSQL(date);
+                                const newAd = {
+                                    ad_id: adId,
+                                    ad_title: adTitle,
+                                    ad_text: adDetails,
+                                    ad_since: startingDate,
+                                    active_till: endingDate,
+                                    ad_category: adCategory,
+                                    ad_country: adCountry,
+                                    ad_image: result.secure_url,
+                                    user_id: userId
+                                }
+                                connection.query("INSERT INTO ad set ? ", [newAd], (error, rows) => {
+                                    if(error){
+                                        console.log(error);
+                                    } else {
+                                        res
+                                            .status(201)
+                                            .json({msg: "Ad Created Successfully."});
+                                    }
+                                });
+                            }).catch((error) =>  {
+                                console.log(error);
+                                // res
+                                //     .status(500)
+                                //     .json(error);
+                            });
+                        }
+                    });
+                }
+            }
         });
     } catch(err){
         res
@@ -312,7 +378,7 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
 router.get("/ad/image", async(req, res)=>{
     try {
 
-        connection.query("SELECT image FROM ads WHERE id = '6nrfq8kjzgvpbi' ", (error, rows) => {
+        connection.query("SELECT image FROM ad WHERE id = '6nrfq8kjzgvpbi' ", (error, rows) => {
             if(error){
                 console.log(error);
             } else {
@@ -327,7 +393,7 @@ router.get("/ad/image", async(req, res)=>{
 });
 
 router.get("/", auth, async(req, res)=>{
-    connection.query("SELECT id, name FROM users WHERE id = ?", [req.user], (error, rows)=>{
+    connection.query("SELECT id_user, first_name, last_name, email ,balance FROM user WHERE id_user = ?", [req.user], (error, rows)=>{
         if(error){
             res.json(error);
         }

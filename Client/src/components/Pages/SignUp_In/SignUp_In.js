@@ -30,12 +30,13 @@ function SignUpIn() {
   const {userData, setUserData} = useContext(UserContext);
 
   if(userData.user){
-    history.push("/user/" + userData.user.id + "/Admin");
+    history.push("/user/" + userData.user.id_user + "/Admin");
   }
 
   const [regError, setRegError] = useState("");
   const [logError, setLogError] = useState("");
-  const [regName, setRegName] = useState("");
+  const [regFName, setRegFName] = useState("");
+  const [regLName, setRegLName] = useState("");
   const [regEmail, setRegEmail] = useState("");
   const [regPassword, setRegPassword] = useState("");
   const [regConfirmPassword, setRegConfirmPassword] = useState("");
@@ -47,7 +48,8 @@ function SignUpIn() {
   const regSubmit = async (e) => {
     try{
       e.preventDefault();
-      const newUser = {regName, regEmail, regPassword, regConfirmPassword};
+      const newUser = {regFName, regLName, regEmail, regPassword, regConfirmPassword};
+      console.log(newUser);
       await axios.post("/user/register", newUser);
       const loginRes = await axios.post("/user/login", {
         logEmail: regEmail,
@@ -128,14 +130,16 @@ function SignUpIn() {
           <React.Fragment>
             {regError && <ErrorNotice message={regError} clearError={() => setRegError("")}/>}
             <div className="register-wrapper">
-              <label htmlFor="fullname">full name</label>
-              <input type="text" required id="fullname" onChange={e => setRegName(e.target.value) }/>
+              <label htmlFor="fullname">first name</label>
+              <input type="text" required onChange={e => setRegFName(e.target.value) }/>
+              <label htmlFor="fullname">last name</label>
+              <input type="text" required onChange={e => setRegLName(e.target.value) }/>
               <label htmlFor="regEmail">email</label>
-              <input type="email" required id="RegEmail" onChange={(e) => setRegEmail(e.target.value)} />
+              <input type="email" required onChange={(e) => setRegEmail(e.target.value)} />
               <label htmlFor="password">password</label>
-              <input type="password" required  id="RegPassword" onChange={(e) => setRegPassword(e.target.value)} />
+              <input type="password" required onChange={(e) => setRegPassword(e.target.value)} />
               <label htmlFor="confirmpassword">confirm password</label>
-              <input type="password" required  id="confirmpassword" onChange={(e) => setRegConfirmPassword(e.target.value)} />
+              <input type="password" required onChange={(e) => setRegConfirmPassword(e.target.value)} />
               <input type="submit" value="submit" className="submit" />
             </div>
           </React.Fragment>

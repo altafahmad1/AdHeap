@@ -178,6 +178,21 @@ body {
   background-color: #eeeeee;
 }
 
+.payment-box {
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  color: var(--dark-color);
+  background: var(--light-color);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 .file-upload {
   width: 600px;
   margin-top: 30px;
@@ -394,7 +409,7 @@ fieldset {
 }
 .ad-form input[type="text"],
 .ad-form input[type="number"],
-.ad-form textarea {
+.ad-form textarea, .ad-form select {
 color: var(--light-color);
   width: 100%;
   border-radius: 4px;

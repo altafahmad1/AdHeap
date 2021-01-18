@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
+import UserContext from "./../../../context/UserContext";
 import "../Account/Account.css";
 import { FaUser } from "react-icons/fa";
 
 function Account() {
+
+	const {userData} = useContext(UserContext);
+
   return (
     <div className="account-wrapper">
       <div className="top-wrapper">
@@ -20,23 +24,23 @@ function Account() {
   <tbody>
   <tr>
 			<td>Name</td>
-			<td>Altaf Ahmad</td>
+			<td>{userData.user.first_name + " " + userData.user.last_name}</td>
 		</tr>
 		<tr>
 			<td>Email</td>
-			<td>altaf123@gmail.com</td>
+			<td>{userData.user.email}</td>
 		</tr>
-		<tr>
+		{/* <tr>
 			<td>Location</td>
 			<td>Pakistan</td>
-		</tr>
+		</tr> */}
 		<tr>
 			<td>Account-Type</td>
-			<td>Admin</td>
+			<td>User</td>
 		</tr>
 		<tr>
 			<td>Balance</td>
-			<td>95$</td>
+			<td>${userData.user.balance}</td>
 		</tr>
 	</tbody>
 </table>
