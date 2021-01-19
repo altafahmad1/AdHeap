@@ -39,7 +39,6 @@ function AdminHome() {
       newAd.append("file", adImage);
       await axios.post("/user/" + userData.user.id_user + "/postAd" , newAd);
     } catch(err){
-      console.log(err);
       err.response.data.msg && setError(err.response.data.msg);
     }
   }

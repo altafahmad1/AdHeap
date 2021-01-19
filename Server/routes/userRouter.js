@@ -8,6 +8,7 @@ const transporter = require("./../controllers/nodemailerController");
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const path = require("path");
+const valid = require("card-validator");
  
  // cloudinary configuration
 cloudinary.config({
@@ -116,7 +117,7 @@ router.post("/login", async (req, res) => {
     try {
         const {logEmail, logPassword} = req.body;
 
-        connection.query("SELECT id_user, first_name, last_name, password FROM user WHERE email = ? ", [logEmail], (error, rows)=>{
+        connection.query("SELECT id_user, first_name, last_name, email, balance, password FROM user WHERE email = ? ", [logEmail], (error, rows)=>{
             if(error){
                 res
                     .status(500)
@@ -146,8 +147,11 @@ router.post("/login", async (req, res) => {
                                 res.json({
                                     token,
                                     user: {
-                                        id: rows[0].id_user,
-                                        displayName: rows[0].first_name + rows[0].last_name
+                                        id_user: rows[0].id_user,
+                                        first_name: rows[0].first_name, 
+                                        last_name: rows[0].last_name,
+                                        email: rows[0].email,
+                                        balance: rows[0].balance
                                     },
                                 });
                             }
@@ -306,15 +310,11 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
 
         connection.query("SELECT balance FROM user WHERE id_user = ? ", [userId], (error, rows) =>{
             if(error){
-                console.log(1);
-                console.log(error)
-                // res
-                //     .status(500)
-                //     .json(error);
+                res
+                    .status(500)
+                    .json(error);
             }
             else {
-                console.log((parseFloat(adDuration) * 0.5) + " " + parseFloat(rows[0].balance));
-                console.log((parseFloat(adDuration) * 0.5) > parseFloat(rows[0].balance));
                 if((parseFloat(adDuration) * 0.5) > parseFloat(rows[0].balance)){
                     res
                         .status(400)
@@ -324,11 +324,9 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
                     const updated_balance = parseFloat(rows[0].balance) - (parseFloat(adDuration) * 0.5);
                     connection.query("UPDATE user SET balance = ? WHERE id_user = ?", [updated_balance, userId], async (error, rows)=>{
                         if(error){
-                            console.log(2);
-                            console.log(error);
-                            // res
-                            //     .status(500)
-                            //     .json(err);
+                            res
+                                .status(500)
+                                .json(err);
                         }
                         else {
                             
@@ -350,7 +348,9 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
                                 }
                                 connection.query("INSERT INTO ad set ? ", [newAd], (error, rows) => {
                                     if(error){
-                                        console.log(error);
+                                        res
+                                            .status(500)
+                                            .json(error);
                                     } else {
                                         res
                                             .status(201)
@@ -358,10 +358,9 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
                                     }
                                 });
                             }).catch((error) =>  {
-                                console.log(error);
-                                // res
-                                //     .status(500)
-                                //     .json(error);
+                                res
+                                    .status(500)
+                                    .json(error);
                             });
                         }
                     });
@@ -375,22 +374,65 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
     }
 });
 
-router.get("/ad/image", async(req, res)=>{
-    try {
+router.post("/:userId/makePayment", async (req, res) => {
+    try{
+        const {cardNumber, amount} = req.body;
+        const userId = req.params.userId;
+        const numberValidation = valid.number(cardNumber);
+        if(!numberValidation.isPotentiallyValid){
+            return res
+                .status(400)
+                .json({msg: "The credit card number is invalid."});
+        }
+        else {
+            if(numberValidation.card.type !== "visa" && numberValidation.card.type !== "mastercard"){
+                return res
+                    .status(400)
+                    .json({msg: "Invalid Card. Only Visa and Mastercard are accepted."});
+            }
+            else {
+                connection.query("SELECT balance FROM user WHERE id_user = ? ", [userId], (error, rows)=>{
+                    if(error){
+                        console.log(error);
+                    }
+                    else {
+                        const newAmount = parseFloat(amount) + parseFloat(rows[0].balance);
+                        connection.query("UPDATE user SET balance = ? WHERE id_user = ?", [newAmount, userId], (error, rows)=>{
+                            if(error){
+                                console.log(error);
+                            }
+                            else {
+                                res
+                                    .status(201)
+                                    .json({msg: "User Balance Successfully Updated."});
+                            }
+                        });
+                    }
+                });
+                const today = dateSQL(new Date());
+                const newPayment = {
+                    payment_id: uniqid(),
+                    amount: parseFloat(amount),
+                    payment_method: "Credit Card",
+                    payment_date: today,
+                    user_id: userId
+                }
+                connection.query("INSERT into payment_user SET ? ", newPayment, (error, rows)=>{
+                    if(error){
+                        console.log(error);
+                    }
+                });
+            }
 
-        connection.query("SELECT image FROM ad WHERE id = '6nrfq8kjzgvpbi' ", (error, rows) => {
-            if(error){
-                console.log(error);
-            } else {
-                           }
-        });
-
-    } catch(err){
+        }
+    } 
+    catch(err){
         res
             .status(500)
             .json(err);
     }
 });
+
 
 router.get("/", auth, async(req, res)=>{
     connection.query("SELECT id_user, first_name, last_name, email ,balance FROM user WHERE id_user = ?", [req.user], (error, rows)=>{

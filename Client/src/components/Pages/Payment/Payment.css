@@ -11,6 +11,7 @@
 }
 
 body{
+  z-index: -3;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -47,6 +48,26 @@ body{
   font-family: inherit;
 }
 
+.card-details-container  {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.card-details {
+
+  color: var(--light-color);
+  margin:0;
+  font-size: 1.3rem;
+}
+
+.card-types {
+  text-align: right;
+}
+
+.card-types img {
+  margin-left: 2px;
+}
+
 .input-form{
   margin-bottom: 20px;
 }
@@ -65,7 +86,9 @@ body{
 
 .section-1 .items .input,
 .section-2 .items .input,
-.section-3 .items .input{
+.section-3 .items .input, select,
+.section-4 .items .input
+{
     background: transparent;
     border: 2px solid #BDBDBD;
     width: 100%;
@@ -75,9 +98,41 @@ body{
     border-radius: 3px;
 }
 
-.input-form .section-3{
+.section-1 input::-webkit-outer-spin-button,
+.section-1 input::-webkit-inner-spin-button,
+.section-2 input::-webkit-outer-spin-button,
+.section-2 input::-webkit-inner-spin-button,
+.section-3 input::-webkit-outer-spin-button,
+.section-3 input::-webkit-inner-spin-button,
+.section-4 input::-webkit-outer-spin-button,
+.section-4 input::-webkit-inner-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.section-1 input[type=number],
+.section-2 input[type=number],
+.section-3 input[type=number],
+.section-4 input[type=number] {
+  -moz-appearance: textfield;
+}
+
+ .input-form .section-3{
   display: flex;
   justify-content: space-between;
+} 
+
+.input-form .section-3 select {
+  width: 46%;
+}
+
+.input-form .section-3 select:first-of-type {
+  margin-right: 8%;
+}
+
+.input-form .section-3 select option {
+  background-color: var(--dark-color);
 }
 
 .input-form .section-3 .items{
@@ -85,6 +140,7 @@ body{
 }
 
 .btn-checkout{
+  width: 100%;
 	padding: 10px 0;
 	text-align: center;
 	text-transform: uppercase;
@@ -109,17 +165,18 @@ body{
 
 .cvc .tooltip{
   color: #d4d4d4;
+  font-size:10px;
   border: 2px solid #d4d4d4;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
   text-align:center;
   cursor: pointer;
 }
 
 .cvc .cvc-img{
   position: absolute;
-  top: -300%;
+  top: -250%;
   right: 0;
   background: #5f6c7d;
   padding: 12px;

@@ -55,6 +55,7 @@ function SignUpIn() {
         logEmail: regEmail,
         logPassword: regPassword
       });
+      console.log(loginRes);
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
@@ -62,7 +63,7 @@ function SignUpIn() {
         isLoading: false
       });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/user/" + loginRes.data.user.id + "/Admin");
+      history.push("/user/" + loginRes.data.user.id_user + "/Admin");
     } catch(err){
       err.response.data.msg && setRegError(err.response.data.msg);
     }
@@ -80,7 +81,7 @@ function SignUpIn() {
         isLoading: false
       });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/user/" + loginRes.data.user.id + "/Admin");
+      history.push("/user/" + loginRes.data.user.id_user + "/Admin");
     } catch(err){
       err.response.data.msg && setLogError(err.response.data.msg);
     }
