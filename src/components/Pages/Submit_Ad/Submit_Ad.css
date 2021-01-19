@@ -98,11 +98,15 @@ align-items:left;
   overflow: hidden;
   color: #ffffff;
   background-color: var(--dark-color);
+  flex-wrap: wrap;
+
   }
  
-.ad-workspace-wrapper{
+.ad-workspace-container .ad-workspace-wrapper{
   display: flex; 
-  max-width: 35%;
+  flex: 1 1 30%;
+
+  max-width: 30%;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 30px;
@@ -118,7 +122,7 @@ align-items:left;
   flex-direction: column;
 }
 
-img{
+.ad-wrapper-content>img{
   margin:20px auto 20px auto;
   width: auto;
   z-index: 999;
@@ -142,33 +146,11 @@ img{
   border-radius: 10px;
   overflow: hidden;
   color: #ffffff;
-  background-color: var(--dark-color);}
+  background-color: var(--dark-color);
+}
 h5{
   margin-bottom: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -457,8 +439,32 @@ border: 2px solid #BDBDBD;
   color: rgb(20, 255, 133,0.8);
 }
 
+.new-ad-create-button{
+  cursor: pointer;
+  width: 35%;
+  background: var(--dark-color);
+  color:var(--light-color);
+  margin: 0 auto 15px 33%;
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 28px;
+  text-transform: uppercase;
+}
+.create-icon{
+margin-right: 10px;
+font-size: 2rem;
+}
 
+.new-ad-create-button:hover {
+  
+  transition: all .2s ease;
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--light-color);
+  -moz-box-shadow: 0 0 5px var(--light-color);
+  -webkit-box-shadow: 0 0 5px var(--light-color);
+  -o-box-shadow: 0 0 5px var(--light-color);
 
+}
 
 @media screen and (max-width: 1050px) {
 
@@ -477,6 +483,11 @@ border: 2px solid #BDBDBD;
         width: 70%;
         margin: 30px auto 0 auto;
         padding: 20px;
+      }
+      .new-ad-create-button{
+        width: 50%;
+        margin-left: 25%;
+
       }
   }
   
@@ -501,4 +512,9 @@ border: 2px solid #BDBDBD;
     .ad-workspace-content{
       flex-direction: column;
     }
+  
+  .new-ad-create-button{
+    width: 70%;
+    margin-left: 15%;
+  }
   }

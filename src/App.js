@@ -13,6 +13,7 @@ import NavbarUser from "./components/Pages/NavbarUser/NavbarUser";
 import Account from "./components/Pages/Account/Account";
 import Settings from "./components/Pages/Settings/Settings";
 import Payment from "./components/Pages/Payment/Payment";
+import CreateAd from "./components/Pages/Create_Ad/Create_Ad";
 
 function App() {
   return (
@@ -37,11 +38,19 @@ function App() {
           <Navbar />
           <Support />
         </Route>
+
         <Route path="/Submit_Ad">
           <NavbarUser />
           <Sidebar />
           <SubmitAd />
         </Route>
+
+        <Route path="/Create-Ad">
+          <NavbarUser />
+          <Sidebar />
+          <CreateAd/>
+        </Route>
+
 
         <Route path="/Account">
           <NavbarUser />

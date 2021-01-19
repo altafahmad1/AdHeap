@@ -1,0 +1,528 @@
+
+ :root {
+    --dark-color: #002433;
+    --light-color: #14ff85;
+  }
+  
+  .Instruction{
+    display: flex;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: var(--dark-color);
+  }
+  
+  .Instruction>.Instruction-Text{
+    margin: 10px;
+    padding: 20px;
+    width: 60%;
+  }
+  
+  .Instruction>.Instruction-action{
+    margin: 10px;
+    padding: 20px;
+    width: 40%;
+  }
+  
+  li{
+    margin-left: 20px;
+  }
+  
+  .image-upload-container{
+    display: flex;
+    background-color: DodgerBlue;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background: var(--dark-color);
+  }
+  
+  .Instruction-Heading{
+  margin-bottom: 20px;
+  margin-top: 40px;
+  font-size: 32px;
+  line-height: 1.1;
+  color: white;
+  width: 100%;
+  }
+  
+  .Instruction-Subheading {
+  margin-bottom: 24px;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--light-color);
+  width: 400px;
+  }
+  
+  .Instruction-Button{
+  color: var(--dark-color);
+  
+  background-color: var(--light-color);
+  padding:10px;
+  width: 270px;
+  height: 60px;
+  font-weight: 600;
+  border-radius: 18px;
+  margin-bottom: 40px;
+  margin-left: 50%;
+  margin-top: 90px;
+  align-items:left;
+  }
+  
+  
+  /* CSS Styling for the workspace */
+   
+  .ad-workspace-container { 
+    display: flex; 
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    /* flex-direction: column; */
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: var(--dark-color);
+    }
+   
+  .ad-workspace-wrapper{
+    display: flex; 
+    max-width: 35%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    padding: 0 2em;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: var(--dark-color);
+    border: var(--light-color) 2px solid;
+    flex-direction: row;
+  }
+  .ad-wrapper-content{
+    flex-direction: column;
+  }
+  
+  img{
+    margin:20px auto 20px auto;
+    width: auto;
+    z-index: 999;
+    border-radius: 10px;
+  }
+  
+  .ad-workspace-heading{
+    width: 100%;
+    text-align: center;
+    margin: 20px auto 20px auto;
+  }
+  .ad-workspace-head{
+    display: flex; 
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    /* flex-direction: column; */
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: var(--dark-color);}
+  h5{
+    margin-bottom: 5px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .file-upload {
+    width: 60%;
+    margin: 30px auto 0 auto;
+    padding: 20px;
+  }
+  
+  .file-upload-btn {
+    width: 100%;
+    margin: 0;
+    color: var(--dark-color);
+    background: var(--light-color);
+    border: none;
+    padding: 10px;
+    border-radius: 35px;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .file-submit-btn {
+    width: 100%;
+    margin: 0;
+    color: var(--dark-color);
+    background: var(--light-color);
+    border: none;
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: 35px;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .file-upload-btn:hover {
+    color: var(--dark-color);
+    transition: all .2s ease;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--light-color);
+    -moz-box-shadow: 0 0 5px var(--light-color);
+    -webkit-box-shadow: 0 0 5px var(--light-color);
+    -o-box-shadow: 0 0 5px var(--light-color);
+  
+  }
+  
+  .file-submit-btn:hover {
+    color: var(--dark-color);
+    transition: all .2s ease;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--light-color);
+    -moz-box-shadow: 0 0 5px var(--light-color);
+    -webkit-box-shadow: 0 0 5px var(--light-color);
+    -o-box-shadow: 0 0 5px var(--light-color);
+  
+  }
+  .file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  
+  .file-upload-content {
+    display: none;
+    text-align: center;
+  }
+  
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .image-upload-wrap {
+    margin-top: 20px;
+    border: 2px dashed var(--light-color);
+    position: relative;
+  }
+  
+  .image-dropping,
+  .image-upload-wrap:hover {
+    background-color: #1FB264;
+    border: 2px dashed var(--dark-color);
+    color: var(--dark-color);
+    font-weight: 700;
+  }
+  
+  .image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+  }
+  
+  .drag-text {
+    text-align: center;
+  }
+  
+  .drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #15824B;
+    padding: 60px 0;
+  }
+  
+  .file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .remove-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  
+  .ad-details-container{
+    display: flex;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2em;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: var(--dark-color);
+  }
+  
+  .ad-details-form{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .ad-form {
+    background: transparent;
+    padding: 25px;
+    margin: 40px 0;
+    border-radius: 35px;
+  }
+  .ad-form input[type="text"],
+  .ad-form input[type="email"],
+  .ad-form input[type="tel"],
+  .ad-form input[type="url"],
+  .ad-form textarea,
+  .ad-form select,
+  .ad-form button[type="submit"] {
+    font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+  }
+  
+  .ad-Heading {
+    color:var(--light-color);
+    font-size: 2em;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: inherit;
+  }
+  
+  .ad-form h3 {
+    display: block;
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+  
+  .ad-form h4 {
+    margin: 5px 0 15px;
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  
+  fieldset {
+    border: none;
+    border-radius: 3px;
+    margin: 0 0 10px;
+    min-width: 100%;
+    padding: 0;
+    width: 100%;
+  }
+  .ad-form > input {
+    color:var(--light-color);
+    background-color: var(--dark-color);
+  }
+  .ad-form input[type="text"],
+  .ad-form input[type="number"],
+  .ad-form textarea,
+  .ad-form select{
+  color: var(--light-color);
+    width: 100%;
+    border-radius: 4px;
+  background-color: var(--dark-color);
+  border: 2px solid #BDBDBD;
+  
+    margin: 0 0 5px;
+    padding: 10px;
+  }
+  
+  .ad-form input[type="text"]:hover,
+  .ad-form input[type="email"]:hover,
+  .ad-form input[type="tel"]:hover,
+  .ad-form input[type="url"]:hover,
+  .ad-form select:hover,
+  .ad-form textarea:hover {
+    -webkit-transition: border-color 0.3s ease-in-out;
+    -moz-transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
+    border: 1px solid #aaa;
+    box-shadow: 0 0 1px var(--light-color);
+    -moz-box-shadow: 0 0 1px var(--light-color);
+    -webkit-box-shadow: 0 0 1px var(--light-color);
+    -o-box-shadow: 0 0 1px var(--light-color);
+  }
+  
+  
+  .ad-form textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+    color: #14ff85;
+  }
+  .ad-form select{
+    margin-bottom: 10px;
+  }
+  
+  .ad-form button[type="submit"] {
+    cursor: pointer;
+    width: 100%;
+    background: var(--light-color);
+    color: var(--dark-color);
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 20px;
+  }
+  
+  .ad-form button[type="submit"]:hover {
+    box-shadow: 0 0 5px var(--light-color);
+    -moz-box-shadow: 0 0 5px var(--light-color);
+    -webkit-box-shadow: 0 0 5px var(--light-color);
+    -o-box-shadow: 0 0 5px var(--light-color);
+  }
+  
+  ::-webkit-input-placeholder {
+    color: rgb(20, 255, 133,0.8);
+  }
+  :-moz-placeholder {
+    color: rgb(20, 255, 133,0.8);
+  }
+  ::-moz-placeholder {
+    color: rgb(20, 255, 133,0.8);
+  }
+  :-ms-input-placeholder {
+    color: rgb(20, 255, 133,0.8);
+  }
+  
+  .new-ad-create-button{
+    cursor: pointer;
+    width: 35%;
+    background: var(--dark-color);
+    color:var(--light-color);
+    margin: 0 auto 15px 33%;
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 28px;
+    text-transform: uppercase;
+  }
+  .create-icon{
+  margin-right: 10px;
+  font-size: 2rem;
+  }
+  
+  
+  @media screen and (max-width: 1050px) {
+  
+    .image-upload-container{
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+      width: 100%;
+    }
+     .ad-details-form{
+       width: 70%;
+       margin-left: auto;
+       margin-right: auto;
+        }
+        .file-upload {
+          width: 70%;
+          margin: 30px auto 0 auto;
+          padding: 20px;
+        }
+        .new-ad-create-button{
+          width: 50%;
+          margin-left: 25%;
+  
+        }
+    }
+    
+  @media screen and (max-width: 960px) {
+  
+    .image-upload-container{
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+      width: 100%;
+    }
+     .ad-details-form{
+       width: 80%;
+       margin-left: auto;
+       margin-right: auto;
+        }
+        .file-upload {
+          width: 80%;
+          margin: 30px auto 0 auto;
+          padding: 20px;
+        }
+      .ad-workspace-content{
+        flex-direction: column;
+      }
+    
+    .new-ad-create-button{
+      width: 70%;
+      margin-left: 15%;
+    }
+    }
