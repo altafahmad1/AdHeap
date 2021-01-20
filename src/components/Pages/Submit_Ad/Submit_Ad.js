@@ -13,9 +13,9 @@ function Submit_Ad() {
           </h1>
           <h3 className="Instruction-Subheading">
             <ol>
-              <li>Set the Duration and details for ad</li>
-              <li>Upload your Ad as jpg file</li>
-              <li>Pay the calculated amount.</li>
+              <li>Set the Duration and details for your ad</li>
+              <li>Upload your Ad as jpg file( Recommended Aspect ratio 16:9 )</li>
+              <li>Pay the calculated amount</li>
             </ol>
           </h3>
         </div>

@@ -117,14 +117,7 @@
   .ad-wrapper-content{
     flex-direction: column;
   }
-  
-  img{
-    margin:20px auto 20px auto;
-    width: auto;
-    z-index: 999;
-    border-radius: 10px;
-  }
-  
+    
   .ad-workspace-heading{
     width: 100%;
     text-align: center;

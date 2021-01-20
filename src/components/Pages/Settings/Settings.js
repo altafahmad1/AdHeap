@@ -1,7 +1,7 @@
 import React from "react";
 import "../Settings/Settings.css";
 import { FaUserCog } from "react-icons/fa";
-import { Link, Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Settings() {
   return (

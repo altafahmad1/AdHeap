@@ -19,21 +19,25 @@ function App() {
   return (
     <Router>
       <Switch>
+        
         <Route exact path="/">
           <Navbar />
           <Home />
         </Route>
+
         <Route exact path="/SignUp_In">
           <Navbar />
           <SignUpIn />
         </Route>
+        
         <Route path="/Admin" exact component={Admin} />
+        
         <Route path="/Support">
           <NavbarUser />
-
           <Sidebar />
           <Support />
         </Route>
+
         <Route path="/ContactUs">
           <Navbar />
           <Support />
@@ -50,7 +54,6 @@ function App() {
           <Sidebar />
           <CreateAd/>
         </Route>
-
 
         <Route path="/Account">
           <NavbarUser />
