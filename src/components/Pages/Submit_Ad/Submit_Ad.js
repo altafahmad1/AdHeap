@@ -5,7 +5,7 @@ import * as FaIcons from "react-icons/fa";
 
 function Submit_Ad() {
   return (
-    <div className="wrapper">
+    <div className="submit-ad-wrapper">
       <div className="Instruction">
         <div className="Instruction-Text">
           <h1 className="Instruction-Heading">

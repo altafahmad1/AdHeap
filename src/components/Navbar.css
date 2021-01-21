@@ -5,7 +5,7 @@
 
 .navbar {
   background: var(--dark-color);
-  height: 80px;
+  height: 85px;
   display: flex;
   justify-content: center;
   align-items: center;

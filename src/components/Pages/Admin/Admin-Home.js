@@ -28,8 +28,8 @@ function AdminHome() {
             (Easy Passive Income) 
           </h3>
         </div>
-        <div className="sell-action">
-          <button className="sell-Button">Start Now</button>
+        <div className="sell-action"><Link to="/SellerDashboard" className="btn-link">
+          <button className="sell-Button">Start Now</button></Link>
         </div>
       </div>
     </div>

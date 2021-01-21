@@ -1,0 +1,91 @@
+:root {
+  --dark-color: #002433;
+  --light-color: #14ff85;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.card {
+  width: 30%;
+  display: inline-block;
+  background-color: var(--dark-color);
+  margin: 2%;
+  color: var(--light-color);
+  box-shadow: 0 0 5px var(--light-color);
+  -moz-box-shadow: 0 0 5px var(--light-color);
+  -webkit-box-shadow: 0 0 5px var(--light-color);
+  -o-box-shadow: 0 0 5px var(--light-color);
+}
+
+.image img {
+  width: 90%;
+  border-radius: 5px;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.title {
+  text-align: center;
+  padding: 10px;
+  width: 90%;
+  margin-left: 5%;
+
+}
+
+.title h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.des p {
+    font-size: 14px;
+    font-weight: lighter;
+  }
+
+.des {
+  text-align: center;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 3px;
+}
+
+.des button {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: var(--light-color);
+  border-radius: 25px;
+  padding: 10px;
+  color: var(--dark-color);
+}
+.des button:hover {
+  background-color: var(--light-color);
+  color: white;
+  color: var(--dark-color);
+  box-shadow: 0 0 5px var(--light-color);
+  -moz-box-shadow: 0 0 5px var(--light-color);
+  -webkit-box-shadow: 0 0 5px var(--light-color);
+  -o-box-shadow: 0 0 5px var(--light-color);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 860px) {
+    
+.card {
+    width: 60%;
+    display: inline-block;
+    background-color: var(--dark-color);
+    margin: 2%;
+    margin-left: 20%;
+    color: var(--light-color);
+    box-shadow: 0 0 5px var(--light-color);
+    -moz-box-shadow: 0 0 5px var(--light-color);
+    -webkit-box-shadow: 0 0 5px var(--light-color);
+    -o-box-shadow: 0 0 5px var(--light-color);
+  }
+}
+
