@@ -248,6 +248,7 @@ export const CategoryData = [
     { name: "Construction" },
     { name: "Cosmetics" },
     { name: "ECommerce" },
+    { name: "Education"},
     { name: "Entertainment" },
     { name: "Fashion" },
     { name: "Finance" },

@@ -27,6 +27,9 @@ function Payment() {
           .then(response => {
             response.data.msg && setSuccessMsg(response.data.msg);
           });
+      setCardNumber("");
+      setAmount("");
+      setCvc("");
     }
     catch(err){
       err.response.data.msg && setError(err.response.data.msg);

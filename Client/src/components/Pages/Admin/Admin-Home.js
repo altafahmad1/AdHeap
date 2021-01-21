@@ -8,8 +8,8 @@ function AdminHome() {
 
   const history = useHistory();
   const {userData} = useContext(UserContext);
-  function gotoWorkspace(){
-    history.push("/user/" + userData.user.id_user + "/workspace");
+  function gotoSubmitAd(){
+    history.push("/user/" + userData.user.id_user + "/Submit_Ad");
   }
   
   return (
@@ -23,7 +23,7 @@ function AdminHome() {
           </h3>
         </div>
         <div className="Adv-action">
-        <button className="Adv-Button" onClick={gotoWorkspace}>Submit Ad</button>
+        <button className="Adv-Button" onClick={gotoSubmitAd}>Submit Ad</button>
 
         </div>
       </div>

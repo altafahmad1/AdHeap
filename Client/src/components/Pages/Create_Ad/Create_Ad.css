@@ -33,39 +33,37 @@
 li{
   margin-left: 20px;
   font-weight: lighter;
-margin-top: 4px;
+  margin-top: 4px;
 }
 
 .image-upload-container{
   display: flex;
   background-color: DodgerBlue;
-  max-width: 95%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  padding: 0 2em;
   border-radius: 10px;
   overflow: hidden;
   color: #ffffff;
   background: var(--dark-color);
 }
 
-.Instruction-Heading{
+.Instruction-Heading {
 margin-bottom: 20px;
 margin-top: 40px;
 font-size: 32px;
 line-height: 1.1;
-font-weight:normal;
 color: white;
 width: 100%;
 }
 
-.Instruction-Subheading {
+.Instruction-Subheading,.sell-Subheading {
 margin-bottom: 24px;
 margin-top: 15px;
 font-size: 20px;
-font-weight: lighter;
+font-weight: normal;
 color: var(--light-color);
 width: 400px;
 }
@@ -85,92 +83,121 @@ margin-top: 90px;
 align-items:left;
 }
 
+.sell-Button{
+color: var(--dark-color);
 
-/* CSS Styling for the workspace */
- 
-.ad-workspace-container { 
-  display: flex; 
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 2em;
-  /* flex-direction: column; */
-  border-radius: 10px;
-  overflow: hidden;
-  color: #ffffff;
-  background-color: var(--dark-color);
-  flex-wrap: wrap;
-
-  }
- 
-.ad-workspace-container .ad-workspace-wrapper{
-  display: flex; 
-  flex: 1 1 30%;
-
-  max-width: 30%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 30px;
-  padding: 0 2em;
-  border-radius: 10px;
-  overflow: hidden;
-  color: #ffffff;
-  background-color: var(--dark-color);
-  border: var(--light-color) 2px solid;
-  flex-direction: row;
+background-color: var(--light-color);
+padding:10px;
+width: 270px;
+height: 60px;
+font-weight: 600;
+border-radius: 18px;
+margin-bottom: 40px;
+margin-left: 37%;
+margin-top: 90px;
+align-items:left;
 }
-.ad-wrapper-content{
+.Adv-Button:hover{
+box-shadow: 0 0 5px var(--light-color);
+-moz-box-shadow: 0 0 5px var(--light-color);
+-webkit-box-shadow: 0 0 5px var(--light-color);
+-o-box-shadow: 0 0 5px var(--light-color);
+color: var(--dark-color);
+background-color: var(--light-color);
+}
+.sell-Button:hover{
+box-shadow: 0 0 5px var(--light-color);
+-moz-box-shadow: 0 0 5px var(--light-color);
+-webkit-box-shadow: 0 0 5px var(--light-color);
+-o-box-shadow: 0 0 5px var(--light-color);
+color: var(--dark-color);
+background-color: var(--light-color);
+}
+@media screen and (max-width: 1050px) {
+.Adv-container{
+  display: flex;
   flex-direction: column;
-}
-
-.ad-wrapper-content img{
-  margin:20px auto 20px auto;
-  width: auto;
-  z-index: 999;
-  border-radius: 10px;
-}
-
-.ad-workspace-heading{
+  height: 70vh;
   width: 100%;
+}
+ 
+.Adv-container>.Adv-Text{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 20px;
+  width: 100%;
+}
+.Adv-container>.Adv-action{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 20px;
+  width: 100%;
+  align-items: center;
+}
+.Adv-Button{
+  width: 50%;
+  margin-left: 0%;
+  margin-top: -5%;
+}
+
+
+.image-upload-container{
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 100%;
+}
+ 
+.sell-container>.sell-Text{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 20px;
+  width: 100%;
+}
+.sell-container>.sell-action{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 20px;
+  width: 100%;
+  align-items: center;
+}
+.sell-Button{
+  width: 50%;
+  margin-left: 0%;
+  margin-top: -10%;
+}
+}
+
+
+
+body {
+  font-family: sans-serif;
+  background-color: #eeeeee;
+}
+
+.payment-box {
   text-align: center;
-  margin: 20px auto 20px auto;
-}
-.ad-workspace-head h1{
-  font-weight: lighter;
-}
-.ad-workspace-head{
-  display: flex; 
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 2em;
-  /* flex-direction: column; */
-  border-radius: 10px;
-  overflow: hidden;
-  color: #ffffff;
-  background-color: var(--dark-color);
-}
-
-.ad-workspace-image img {
+  margin-bottom: 2rem;
   width: 100%;
-  height: 200px;
+  color: var(--dark-color);
+  background: var(--light-color);
+  border: none;
+  padding: 20px;
+  border-radius: 5px;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
 }
-
-h5{
-  margin-bottom: 5px;
-  font-weight: 400;
-}
-
-
 
 .file-upload {
-  width: 60%;
-  margin: 30px auto 0 auto;
-  padding: 20px;
+  width: 100%;
+  margin-top: 30px;
+  margin: 0 auto;
 }
 
 .file-upload-btn {
@@ -179,7 +206,6 @@ h5{
   color: var(--dark-color);
   background: var(--light-color);
   border: none;
-  padding: 10px;
   border-radius: 35px;
   transition: all .2s ease;
   outline: none;
@@ -333,13 +359,14 @@ h5{
   padding: 25px;
   margin: 40px 0;
   border-radius: 35px;
+
 }
+
 .ad-form input[type="text"],
 .ad-form input[type="email"],
 .ad-form input[type="tel"],
 .ad-form input[type="url"],
 .ad-form textarea,
-.ad-form select,
 .ad-form button[type="submit"] {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
 }
@@ -381,8 +408,7 @@ fieldset {
 }
 .ad-form input[type="text"],
 .ad-form input[type="number"],
-.ad-form textarea,
-.ad-form select{
+.ad-form textarea, .ad-form select {
 color: var(--light-color);
   width: 100%;
   border-radius: 4px;
@@ -397,7 +423,6 @@ border: 2px solid #BDBDBD;
 .ad-form input[type="email"]:hover,
 .ad-form input[type="tel"]:hover,
 .ad-form input[type="url"]:hover,
-.ad-form select:hover,
 .ad-form textarea:hover {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;
@@ -415,9 +440,6 @@ border: 2px solid #BDBDBD;
   max-width: 100%;
   resize: none;
   color: #14ff85;
-}
-.ad-form select{
-  margin-bottom: 10px;
 }
 
 .ad-form button[type="submit"] {
@@ -439,6 +461,25 @@ border: 2px solid #BDBDBD;
   -o-box-shadow: 0 0 5px var(--light-color);
 }
 
+@media screen and (max-width: 1080px) {
+  .ad-details-form {
+    width: 60%;
+  }
+
+
+}
+@media screen and (max-width: 760px) {
+  .ad-details-form{
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ad-details-form {
+    width: 95%;
+  }
+}
+
 ::-webkit-input-placeholder {
   color: rgb(20, 255, 133,0.8);
 }
@@ -451,83 +492,3 @@ border: 2px solid #BDBDBD;
 :-ms-input-placeholder {
   color: rgb(20, 255, 133,0.8);
 }
-
-.new-ad-create-button{
-  cursor: pointer;
-  width: 35%;
-  background: var(--dark-color);
-  color:var(--light-color);
-  margin: 0 auto 15px 33%;
-  padding: 10px;
-  font-weight: 500;
-  border-radius: 28px;
-  text-transform: uppercase;
-}
-.create-icon{
-margin-right: 10px;
-font-size: 2rem;
-}
-
-.new-ad-create-button:hover {
-  
-  transition: all .2s ease;
-  cursor: pointer;
-  box-shadow: 0 0 5px var(--light-color);
-  -moz-box-shadow: 0 0 5px var(--light-color);
-  -webkit-box-shadow: 0 0 5px var(--light-color);
-  -o-box-shadow: 0 0 5px var(--light-color);
-
-}
-
-@media screen and (max-width: 1050px) {
-
-  .image-upload-container{
-    display: flex;
-    flex-direction: column;
-    height: 70vh;
-    width: 100%;
-  }
-   .ad-details-form{
-     width: 70%;
-     margin-left: auto;
-     margin-right: auto;
-      }
-      .file-upload {
-        width: 70%;
-        margin: 30px auto 0 auto;
-        padding: 20px;
-      }
-      .new-ad-create-button{
-        width: 50%;
-        margin-left: 25%;
-
-      }
-  }
-  
-@media screen and (max-width: 960px) {
-
-  .image-upload-container{
-    display: flex;
-    flex-direction: column;
-    height: 70vh;
-    width: 100%;
-  }
-   .ad-details-form{
-     width: 80%;
-     margin-left: auto;
-     margin-right: auto;
-      }
-      .file-upload {
-        width: 80%;
-        margin: 30px auto 0 auto;
-        padding: 20px;
-      }
-    .ad-workspace-content{
-      flex-direction: column;
-    }
-  
-  .new-ad-create-button{
-    width: 70%;
-    margin-left: 15%;
-  }
-  }

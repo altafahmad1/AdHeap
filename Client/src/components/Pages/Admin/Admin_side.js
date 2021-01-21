@@ -59,6 +59,14 @@ function Sidebar() {
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+          <div className="balance-display">
+            <div className="balance-icon">
+              <FaIcons.FaWallet/>
+            </div>
+            <div className="balance-amount">
+              <h3>${userData.user.balance}</h3>
+            </div>
+          </div>
         </div>
         <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
           <ul className='side-menu-items' onClick={showSidebar}>

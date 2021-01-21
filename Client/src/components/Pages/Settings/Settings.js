@@ -1,9 +1,35 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+import {useHistory} from "react-router-dom";
 import "../Settings/Settings.css";
 import { FaUserCog } from "react-icons/fa";
 import { Link, Route } from "react-router-dom";
+import AlertDialog from "./../../misc/AlertDialog";
+import UserContext from "./../../../context/UserContext";
+import axios from "axios";
 
 function Settings() {
+  const {userData, setUserData} = useContext(UserContext);
+  const history = useHistory();
+
+  const confirmDelete = async () => {
+    try {
+      await axios.delete("/user/" + userData.user.id_user + "/delete");
+      setUserData({
+        token: undefined,
+        user: undefined
+      });
+      localStorage.setItem("auth-token", "");
+      history.push("/");
+    } 
+    catch (err){
+      console.log(err);
+    }
+  }
+
+  const handleCancel = () => {
+    return;
+  }
+
   return (
     <div className="Settings-wrapper">
       <div className="Settings-top-wrapper">
@@ -26,7 +52,7 @@ function Settings() {
 			<td><button className="changepass-btn">Change Password</button></td>
 		</tr>
 		<tr>
-        <td><button className="delete-btn" >Delete Account</button></td>
+        <td><AlertDialog buttonName="Delete Account" handleOk={confirmDelete} handleCancel={handleCancel} /></td>
 		</tr>
 	</tbody>
 </table>

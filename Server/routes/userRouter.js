@@ -169,8 +169,50 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.delete("/delete", auth, async (req, res) => {
+router.delete("/:userId/delete", async (req, res) => {
     try {
+        const userId = req.params.userId;
+        //Doing several queries to delete all the data related to user
+        deleteAdHistoryQuery = "DELETE From ad_history WHERE ad_id IN (SELECT ad_id FROM ad WHERE user_id = ? )";
+        deleteAdsQuery = "DELETE FROM ad WHERE user_id = ?";
+        deleteUserPaymentsQuery = "DELETE FROM payment_user WHERE user_id = ?";
+        deleteUserReviewsQuery = "DELETE FROM user_reviews WHERE user_id  = ?";
+        deleteUserQuery = "DELETE FROM user WHERE id_user = ? ";
+        
+
+        connection.query(deleteAdHistoryQuery, [userId], (error, rows)=> {
+            if(error){
+                console.log(error);
+            }
+        });
+
+        connection.query(deleteAdsQuery, [userId], (error, rows) => {
+            if(error){
+                console.log(error);
+            }
+        });
+
+        connection.query(deleteUserPaymentsQuery, [userId], (error, rows) => {
+            if(error){
+                console.log(error);
+            }
+        });
+
+        connection.query(deleteUserReviewsQuery, [userId], (error, rows) => {
+            if(error){
+                console.log(error);
+            }
+        });
+
+        connection.query(deleteUserQuery, [userId], (error, rows) => {
+            if(error){
+                console.log(error);
+            }
+        });
+
+        console.log("Success");
+
+
         connection.query("DELETE FROM user WHERE id_user = ? ", [req.user], (error, rows)=>{
             if(error){
                 res
@@ -303,7 +345,6 @@ router.post("/requestPassword", async(req, res)=>{
 
 router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
     try {
-        console.log(req.file);
         const {adTitle, adDuration, adCategory, adCountry, adDetails} = req.body;
         const userId = req.params.userId;
         const adId = uniqid();
@@ -357,6 +398,20 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
                                             .json({msg: "Ad Created Successfully."});
                                     }
                                 });
+                                const newAdHistory = {
+                                    id_ad_history: uniqid(),
+                                    start_date: startingDate,
+                                    end_date: endingDate,
+                                    ad_id: adId,
+                                    no_of_websites: 0
+                                };
+
+
+                                connection.query("INSERT INTO ad_history SET ? ", [newAdHistory], (error, rows) => {
+                                    if(error){
+                                        console.log(error);
+                                    }
+                                })
                             }).catch((error) =>  {
                                 res
                                     .status(500)
@@ -373,6 +428,8 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
             .json(err);
     }
 });
+
+
 
 router.post("/:userId/makePayment", async (req, res) => {
     try{
@@ -393,13 +450,17 @@ router.post("/:userId/makePayment", async (req, res) => {
             else {
                 connection.query("SELECT balance FROM user WHERE id_user = ? ", [userId], (error, rows)=>{
                     if(error){
-                        console.log(error);
+                        res
+                            .status(500)
+                            .json(error);
                     }
                     else {
                         const newAmount = parseFloat(amount) + parseFloat(rows[0].balance);
                         connection.query("UPDATE user SET balance = ? WHERE id_user = ?", [newAmount, userId], (error, rows)=>{
                             if(error){
-                                console.log(error);
+                                res
+                                    .status(500)
+                                    .json(error);
                             }
                             else {
                                 res
@@ -433,6 +494,63 @@ router.post("/:userId/makePayment", async (req, res) => {
     }
 });
 
+router.post("/:userId/postUserReview", async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const {reviewMessage} = req.body;
+        const review = {
+            review_id: uniqid(),
+            message: reviewMessage,
+            user_id: userId
+        }
+        connection.query("INSERT INTO user_reviews SET ?", [review], (error, rows)=>{
+            if(error){
+                res
+                    .status(500)
+                    .json(error);
+            }
+            else {
+                res.json({msg: "Thank you for contacting us. We shall get back to you soon."});
+            }
+        });
+    } 
+    catch (err){
+        res
+            .status(500)
+            .json(err);
+    }
+});
+
+router.post("/postAnonReview", async (req, res) => {
+    try {
+        const {reviewName, reviewEmail, reviewPhoneNumber, reviewWebsite, reviewMessage} = req.body;
+        const review = {
+            review_id: uniqid(),
+            email: reviewEmail,
+            name: reviewName,
+            phone_number: reviewPhoneNumber,
+            website: reviewWebsite,
+            message: reviewMessage
+        }
+        connection.query("INSERT INTO anon_reviews SET ? ", [review], (error, rows) =>{
+            if(error){
+                res
+                    .status(500)
+                    .json(error);
+            }
+            else{
+                res.json({msg: "Thank you for contacting us. We shall get back to you soon."});
+            }
+        })
+    }
+    catch (err){
+        res
+            .status(500)
+            .json(err);
+    }
+    
+});
+
 
 router.get("/", auth, async(req, res)=>{
     connection.query("SELECT id_user, first_name, last_name, email ,balance FROM user WHERE id_user = ?", [req.user], (error, rows)=>{
@@ -446,6 +564,33 @@ router.get("/", auth, async(req, res)=>{
         }
     });
 });
+
+router.get("/getUserAds", auth, async(req, res)=>{
+    connection.query("SELECT ad_title, ad_since, active_till, ad_category, ad_country, ad_image FROM ad WHERE user_id = ?", [req.user], (error, rows) => {
+        if(error){
+            res
+                .status(500)
+                .json(error);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+});
+
+// router.get("/getUserBalance", auth, async(req, res)=>{
+//     connection.query("SELECT balance FROM user WHERE id_user = ?", [req.user], (error, rows)=>{
+//         if(error){
+//             res
+//                 .status(500)
+//                 .json(error);
+//         }
+//         else {
+//             res.json(rows[0]);
+//         }
+//     });
+// });
+
 
 
 module.exports = router;

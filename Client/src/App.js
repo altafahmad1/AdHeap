@@ -5,10 +5,12 @@ import { BrowserRouter as Router, useHistory ,Switch, Route } from "react-router
 import Navbar from "./components/Navbar";
 import Footer from "./components/Pages/Footer/Footer";
 import SignUpIn from "./components/Pages/SignUp_In/SignUp_In";
+import ForgotPasswordPage from "./components/Pages/SignUp_In/ForgotPasswordPage";
 import Admin from "./components/Pages/Admin/Admin";
 import Support from "./components/Pages/Support/Support";
 import Sidebar from "./components/Pages/Admin/Admin_side";
-import SubmitAd from "./components/Pages/Submit_Ad/Submit_Ad";
+import Submit_Ad from "./components/Pages/Submit_Ad/Submit_Ad";
+import Create_Ad from "./components/Pages/Create_Ad/Create_Ad";
 import NavbarUser from "./components/Pages/NavbarUser/NavbarUser";
 import Account from "./components/Pages/Account/Account";
 import Settings from "./components/Pages/Settings/Settings";
@@ -16,8 +18,7 @@ import Payment from "./components/Pages/Payment/Payment";
 import PrivateRoute from "./components/misc/PrivateRoute";
 import userContext from './context/UserContext';
 import axios from "axios";
-import TemplatePage from "./components/Pages/TemplatePage";
-import ForgotPasswordPage from "./components/Pages/SignUp_In/ForgotPasswordPage";
+
 
 function App() {
 
@@ -55,9 +56,9 @@ function App() {
         })
       }
     }
-
     checkLoggedIn();
   }, []);
+
 
   return (
         <Router>
@@ -70,8 +71,8 @@ function App() {
             <Route exact path="/SignUp_In" component={SignUpIn} />
             <Route path="/forgotPassword" component={ForgotPasswordPage} />
             <PrivateRoute path="/user/:userid/Admin" component={Admin} />
-            <PrivateRoute path="/user/:userid/Submit_Ad" component={SubmitAd} />
-            <PrivateRoute path="/user/:userid/workspace" component={TemplatePage} />
+            <PrivateRoute path="/user/:userid/Submit_Ad" component={Submit_Ad} />
+            <PrivateRoute path="/user/:userid/Create_Ad" component={Create_Ad} />
             <PrivateRoute path="/user/:userid/account/" component={Account} />
             <PrivateRoute path="/user/:userid/payment" component={Payment} />
             <PrivateRoute path="/user/:userid/settings/" component={Settings} />
