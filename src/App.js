@@ -15,6 +15,8 @@ import Settings from "./components/Pages/Settings/Settings";
 import Payment from "./components/Pages/Payment/Payment";
 import CreateAd from "./components/Pages/Create_Ad/Create_Ad";
 import Seller from "./components/Pages/Seller/Seller";
+import WebsiteAd from "./components/Pages/WebsiteAd/WebsiteAd";
+import NewWebsite from "./components/Pages/New_Website/New_Website";
 function App() {
   return (
     <Router>
@@ -76,9 +78,22 @@ function App() {
         <Route path="/SellerDashboard">
           <NavbarUser />
           <Sidebar />
-          <Seller />
+          <WebsiteAd />
         </Route>
 
+        <Route path="/Seller">
+          <NavbarUser />
+          <Sidebar />
+          <Seller />
+        </Route>
+      
+      
+        <Route path="/New_Website_add">
+          <NavbarUser />
+          <Sidebar />
+          <NewWebsite />
+        </Route>
+      
       </Switch>
       <Footer />
     </Router>
