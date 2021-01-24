@@ -17,6 +17,8 @@ import CreateAd from "./components/Pages/Create_Ad/Create_Ad";
 import Seller from "./components/Pages/Seller/Seller";
 import WebsiteAd from "./components/Pages/WebsiteAd/WebsiteAd";
 import NewWebsite from "./components/Pages/New_Website/New_Website";
+import History from "./components/Pages/Ad_History/Ad_History";
+
 function App() {
   return (
     <Router>
@@ -94,6 +96,12 @@ function App() {
           <NewWebsite />
         </Route>
       
+        <Route path="/Ad_History">
+          <NavbarUser />
+          <Sidebar />
+          <History />
+        </Route>
+
       </Switch>
       <Footer />
     </Router>
