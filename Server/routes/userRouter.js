@@ -9,6 +9,8 @@ const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const path = require("path");
 const valid = require("card-validator");
+const axios = require("axios");
+const uuidAPIKey = require('uuid-apikey');
  
  // cloudinary configuration
 cloudinary.config({
@@ -87,10 +89,9 @@ router.post("/register", async(req, res)=>{
             
                             connection.query("INSERT INTO user set ?", user, (error, rows)=>{
                                 if(error){
-                                    console.log(error);
-                                    // res
-                                    //     .status(500)
-                                    //     .json(error);
+                                    res
+                                        .status(500)
+                                        .json(error);
                                 }
                                 else{
                                     res
@@ -182,49 +183,58 @@ router.delete("/:userId/delete", async (req, res) => {
 
         connection.query(deleteAdHistoryQuery, [userId], (error, rows)=> {
             if(error){
-                console.log(error);
+                res
+                    .status(500)
+                    .json(error);
             }
         });
 
         connection.query(deleteAdsQuery, [userId], (error, rows) => {
             if(error){
-                console.log(error);
+                res
+                    .status(500)
+                    .json(error);
             }
         });
 
         connection.query(deleteUserPaymentsQuery, [userId], (error, rows) => {
             if(error){
-                console.log(error);
+                res
+                    .status(500)
+                    .json(error);
             }
         });
 
         connection.query(deleteUserReviewsQuery, [userId], (error, rows) => {
             if(error){
-                console.log(error);
+                res
+                    .status(500)
+                    .json(error);
             }
         });
 
         connection.query(deleteUserQuery, [userId], (error, rows) => {
             if(error){
-                console.log(error);
-            }
-        });
-
-        console.log("Success");
-
-
-        connection.query("DELETE FROM user WHERE id_user = ? ", [req.user], (error, rows)=>{
-            if(error){
                 res
                     .status(500)
                     .json(error);
             }
-            else {
-                res
-                    .status(200)
-                    .json({msg: "User Deleted."});
-            }
         });
+
+
+
+        // connection.query("DELETE FROM user WHERE id_user = ? ", [req.user], (error, rows)=>{
+        //     if(error){
+        //         res
+        //             .status(500)
+        //             .json(error);
+        //     }
+        //     else {
+        //         res
+        //             .status(200)
+        //             .json({msg: "User Deleted."});
+        //     }
+        // });
     } catch(err){
         res
             .status(500)
@@ -285,10 +295,9 @@ router.post("/requestPassword", async(req, res)=>{
                         bcrypt.hash(newPass, salt, function(err, hash) {
                             connection.query("UPDATE user SET password = ? WHERE email = ? ", [hash, email], (error, rows)=>{
                                 if(error){
-                                    console.log(error);
-                                    // res
-                                    //     .status(500)
-                                    //     res.json(error);
+                                    res
+                                        .status(500)
+                                        res.json(error);
                                 }
                                 else {
                                     forgotPasswordEmail = `<div style="background-color: #002433; color:#fff; 
@@ -316,11 +325,11 @@ router.post("/requestPassword", async(req, res)=>{
                                     }
         
                                     transporter.sendMail(forgotPasswordOptions, function(error, info){
-                                        if (error) {
-                                            console.log(error);
-                                        //   res
-                                        //     .status(500)
-                                        //     .json(error);
+                                        if (error) {      
+                                          res
+                                            .status(500)
+                                            .json(error);
+
                                         } else {
                                           res
                                             .status(201)
@@ -336,16 +345,16 @@ router.post("/requestPassword", async(req, res)=>{
             }
         })
     } catch(err){
-        console.log(err);
-        // res
-        //     .status(500)
-        //     .json(err);
+        res
+            .status(500)
+            .json(err);
     }
 });
 
 router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
     try {
-        const {adTitle, adDuration, adCategory, adCountry, adDetails} = req.body;
+        console.log("Hello");
+        const {adTitle, adDuration, adCategory, adCountry, adSource, adDetails} = req.body;
         const userId = req.params.userId;
         const adId = uniqid();
 
@@ -385,7 +394,8 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
                                     ad_category: adCategory,
                                     ad_country: adCountry,
                                     ad_image: result.secure_url,
-                                    user_id: userId
+                                    user_id: userId,
+                                    ad_source: adSource
                                 }
                                 connection.query("INSERT INTO ad set ? ", [newAd], (error, rows) => {
                                     if(error){
@@ -409,7 +419,9 @@ router.post("/:userId/postAd", upload.single("file") ,async(req, res) => {
 
                                 connection.query("INSERT INTO ad_history SET ? ", [newAdHistory], (error, rows) => {
                                     if(error){
-                                        console.log(error);
+                                        res
+                                            .status(500)
+                                            .json(error);
                                     }
                                 })
                             }).catch((error) =>  {
@@ -480,7 +492,9 @@ router.post("/:userId/makePayment", async (req, res) => {
                 }
                 connection.query("INSERT into payment_user SET ? ", newPayment, (error, rows)=>{
                     if(error){
-                        console.log(error);
+                        res
+                            .status(500)
+                            .json(error);
                     }
                 });
             }
@@ -551,6 +565,42 @@ router.post("/postAnonReview", async (req, res) => {
     
 });
 
+router.post("/ip", (req, res) => {
+    axios.get("http://api.ipstack.com/" + req.body.ip + "?access_key=" + process.env.IPSTACK_KEY + "&format=1")
+    .then((response) => {
+        res.json({country: response.data.country_name});
+    });
+});
+
+router.post("/:userId/postWebsite", async (req, res) => {
+    try {
+        const {websiteTitle, websiteCategory, websiteUrl} = req.body;
+        const userId = req.params.userId;
+        const newWebsite = {
+            website_id: uniqid(),
+            url: websiteUrl,
+            api_key: uuidAPIKey.create().apiKey,
+            category: websiteCategory,
+            user_id: userId,
+            website_name: websiteTitle
+        }
+
+        connection.query("INSERT INTO website SET ? ", [newWebsite], (error, rows)=>{
+            if(error){
+                console.log(error);
+                res
+                    .status(500)
+                    .json(error);
+            }
+        });
+    }
+    catch(err){
+        res
+            .status(500)
+            .json(err);
+    }
+});
+
 
 router.get("/", auth, async(req, res)=>{
     connection.query("SELECT id_user, first_name, last_name, email ,balance FROM user WHERE id_user = ?", [req.user], (error, rows)=>{
@@ -566,7 +616,7 @@ router.get("/", auth, async(req, res)=>{
 });
 
 router.get("/getUserAds", auth, async(req, res)=>{
-    connection.query("SELECT ad_title, ad_since, active_till, ad_category, ad_country, ad_image FROM ad WHERE user_id = ?", [req.user], (error, rows) => {
+    connection.query("SELECT ad_id, ad_title, ad_since, active_till, ad_category, ad_country, ad_image FROM ad WHERE user_id = ?", [req.user], (error, rows) => {
         if(error){
             res
                 .status(500)
@@ -578,19 +628,35 @@ router.get("/getUserAds", auth, async(req, res)=>{
     });
 });
 
-// router.get("/getUserBalance", auth, async(req, res)=>{
-//     connection.query("SELECT balance FROM user WHERE id_user = ?", [req.user], (error, rows)=>{
-//         if(error){
-//             res
-//                 .status(500)
-//                 .json(error);
-//         }
-//         else {
-//             res.json(rows[0]);
-//         }
-//     });
-// });
+router.get("/getUserWebsites", auth, async(req, res) =>{
+    connection.query("SELECT * FROM website WHERE user_id = ? ", [req.user], (error, rows)=>{
+        if(error){
+            res
+                .status(500)
+                .json(error);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+});
 
+router.get("/getAds/:apiKeys/:category/:country", async(req, res) => {
+    const apiKeys = req.params.apikeys;
+    const country = req.params.country;
+    const category = req.params.category;
+    connection.query("SELECT * FROM ad WHERE ad_category = ? AND ad_country = ?", [category, country], (error, rows) => {
+        if(error){
+            res
+                .status(500)
+                .json(error);
+        }
+        else {
+            res
+                .json(rows);
+        }
+    });
+});
 
 
 module.exports = router;

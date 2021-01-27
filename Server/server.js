@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.set('trust proxy',true); 
+
 app.use("/user", require("./routes/userRouter"));                                  
 
 let port = process.env.PORT || 4000;

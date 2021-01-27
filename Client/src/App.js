@@ -15,6 +15,9 @@ import NavbarUser from "./components/Pages/NavbarUser/NavbarUser";
 import Account from "./components/Pages/Account/Account";
 import Settings from "./components/Pages/Settings/Settings";
 import Payment from "./components/Pages/Payment/Payment";
+import Submit_Website from "./components/Pages/Submit_Website/Submit_Website";
+import Website_Dashboard from "./components/Pages/Website_Dashboard/Website_Dashboard";
+import Website_Instructions from "./components/Pages/Website_Instructions/Website_Instructions";
 import PrivateRoute from "./components/misc/PrivateRoute";
 import userContext from './context/UserContext';
 import axios from "axios";
@@ -73,9 +76,13 @@ function App() {
             <PrivateRoute path="/user/:userid/Admin" component={Admin} />
             <PrivateRoute path="/user/:userid/Submit_Ad" component={Submit_Ad} />
             <PrivateRoute path="/user/:userid/Create_Ad" component={Create_Ad} />
-            <PrivateRoute path="/user/:userid/account/" component={Account} />
+            <PrivateRoute path="/user/:userid/account" component={Account} />
             <PrivateRoute path="/user/:userid/payment" component={Payment} />
-            <PrivateRoute path="/user/:userid/settings/" component={Settings} />
+            <PrivateRoute path="/user/:userid/settings" component={Settings} />
+            <PrivateRoute path="/user/:userid/Submit_Website" component={Submit_Website} />
+            <PrivateRoute path="/user/:userid/Website_Dashboard" component={Website_Dashboard} />
+            <PrivateRoute path="/user/:userid/website/:url" component={Website_Instructions} />
+
           </Switch>
         <Footer />
       </userContext.Provider>

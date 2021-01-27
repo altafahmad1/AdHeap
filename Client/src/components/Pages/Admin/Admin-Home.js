@@ -11,6 +11,10 @@ function AdminHome() {
   function gotoSubmitAd(){
     history.push("/user/" + userData.user.id_user + "/Submit_Ad");
   }
+
+  function gotoWebsiteDashboard(){
+    history.push("/user/" + userData.user.id_user + "/Website_Dashboard");
+  }
   
   return (
     <div className="wrapper">
@@ -37,7 +41,7 @@ function AdminHome() {
           </h3>
         </div>
         <div className="sell-action">
-          <button className="sell-Button">Start Now</button>
+          <button className="sell-Button" onClick={gotoWebsiteDashboard}>Start Now</button>
         </div>
       </div>
     </div>

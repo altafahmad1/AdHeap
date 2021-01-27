@@ -18,6 +18,7 @@ function CreateAd() {
   const [adDuration, setAdDuration] = useState("");
   const [adCategory, setAdCategory] = useState("");
   const [adCountry, setAdCountry] = useState("");
+  const [adSource, setAdSource] = useState("");
   const [adDetails, setAdDetails] = useState("");
   const [adImage, setAdImage] = useState(null);
 
@@ -37,19 +38,21 @@ function CreateAd() {
       newAd.append("adDuration", adDuration);
       newAd.append("adCategory", adCategory);
       newAd.append("adCountry", adCountry);
+      newAd.append("adSource", adSource);
       newAd.append("adDetails", adDetails);
       newAd.append("file", adImage);
-      setAdTitle("");
-      setAdDuration("");
-      setAdCategory("");
-      setAdCountry("");
-      setAdDetails("");
-      setAdImage(null);
+      // setAdTitle("");
+      // setAdDuration("");
+      // setAdCategory("");
+      // setAdCountry("");
+      // setAdSource("");
+      // setAdDetails("");
+      // setAdImage(null);
       await axios.post("/user/" + userData.user.id_user + "/postAd" , newAd).then(() => {
         history.push("/user/" + userData.user.id_user + "/Submit_Ad");
       });
     } catch(err){
-      err.response.data.msg && setError(err.response.data.msg);
+      // err.response.data.msg && setError(err.response.data.msg);
     }
   }
 
@@ -79,6 +82,7 @@ function CreateAd() {
           <h2 className="ad-Heading">AD Detail form</h2>
           <fieldset>
             <input
+              value={adTitle}
               placeholder="Ad Title"
               type="text"
               tabIndex="1"
@@ -90,6 +94,7 @@ function CreateAd() {
           </fieldset>
           <fieldset>
             <input
+              value={adDuration}
               placeholder="Duration(days)"
               type="number"
               tabIndex="2"
@@ -101,7 +106,8 @@ function CreateAd() {
             ></input>
           </fieldset>
           <fieldset>
-            <select id="country" name="country" placeholder="Targeted country"
+            <select 
+                value={adCategory}
                 type="text"
                 tabIndex="2"
                 onChange={e => setAdCategory(e.target.value)}
@@ -115,7 +121,8 @@ function CreateAd() {
             </select>
          </fieldset>
          <fieldset>
-            <select id="country" name="country" placeholder="Targeted country"
+            <select 
+              value={adCountry}
               type="text"
               tabIndex="2"
               onChange={e => setAdCountry(e.target.value)}
@@ -130,6 +137,18 @@ function CreateAd() {
           </fieldset>
           <fieldset>
             <input
+              value={adSource}
+              placeholder="Website URL"
+              required
+              type="text"
+              tabIndex="2"
+              onChange ={e => setAdSource(e.target.value)}
+              
+            ></input>
+          </fieldset>
+          <fieldset>
+            <input
+              value={adDetails}
               placeholder="Details(optional)"
               type="text"
               tabIndex="2"
